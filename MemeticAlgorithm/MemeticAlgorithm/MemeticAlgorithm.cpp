@@ -4,8 +4,3 @@
 MemeticAlgorithm::MemeticAlgorithm()
 {
 }
-
-
-MemeticAlgorithm::~MemeticAlgorithm()
-{
-}
