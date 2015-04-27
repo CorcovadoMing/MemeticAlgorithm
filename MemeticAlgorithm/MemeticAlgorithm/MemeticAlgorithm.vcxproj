@@ -84,6 +84,9 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MemeticAlgorithm.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="tai100_20_1.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

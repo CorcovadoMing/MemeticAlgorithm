@@ -9,6 +9,7 @@ typedef std::vector<Chromosome> Population;
 typedef std::vector< std::vector<int> > Matrix;
 
 #pragma region Functions-Definition
+
 typedef std::function<void()> InitializeOperation;
 typedef std::vector<InitializeOperation> Initialize;
 
@@ -20,6 +21,7 @@ typedef std::vector<MutationOperation> Mutation;
 
 typedef std::function<const Chromosome(const Chromosome &)> LocalSearchOperation;
 typedef std::vector<LocalSearchOperation> LocalSearch;
+
 #pragma endregion
 
 class MemeticAlgorithm
@@ -28,10 +30,10 @@ public:
 	MemeticAlgorithm(const int, const double, const double, const std::string &);
 	void run();
 private:
-	Matrix matrix_;
 	void readfile();
 	const int fitness(const Chromosome &);
 
+	Matrix matrix_;
 	Initialize initialize_;
 	Crossover crossover_;
 	Mutation mutation_;
@@ -49,10 +51,12 @@ private:
 	//void environmentSelect();
 
 	Population population_;
-	const double crossover_rate_, mutation_rate_;
+	const double crossover_rate_;
+	const double mutation_rate_;
 	const int population_size_;
 	
 	const std::string filename_;
-	int jobs = 0, machines = 0;
+	unsigned jobs_ = 0;
+	unsigned machines_ = 0;
 };
 

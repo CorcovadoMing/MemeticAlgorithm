@@ -4,10 +4,14 @@
 #include <algorithm>
 
 MemeticAlgorithm::MemeticAlgorithm(const int population_size, const double crossover_rate, const double mutation_rate, const std::string& filename)
-	 : population_size_(population_size), crossover_rate_(crossover_rate), mutation_rate_(mutation_rate)
+	: population_size_(population_size), crossover_rate_(crossover_rate), mutation_rate_(mutation_rate), filename_(filename)
 {
-	population_ = Population(10, Chromosome(10, 0)); // for testing
-
+	readfile();
+	if (jobs_ == 0 || machines_ == 0)
+	{
+		std::cout << "[Error] jobs = 0, machines = 0" << std::endl;
+	}
+	population_ = Population(population_size_, Chromosome(jobs_, 0));
 
 	initialize_.push_back(randomInitialize);
 	initialize_.push_back(heuristicInitialize);
@@ -85,23 +89,21 @@ Chromosome MemeticAlgorithm::TS(const Chromosome &chromosome)
 
 void MemeticAlgorithm::readfile()
 {
-	int job = 0, machine = 0;
 	std::string useless;
 	std::ifstream fin;
 	fin.open(filename_.c_str());
 
-	fin >> job >> machine >> useless;
+	fin >> jobs_ >> machines_ >> useless;
 
-	Matrix matrix(machine, std::vector<int>(job, 0));
+	Matrix matrix(machines_, std::vector<int>(jobs_, 0));
 
-	for (int i = 0; i < machine; i += 1)
+	for (std::size_t i = 0; i < machines_; i += 1)
 	{
-		for (int j = 0; j < job; j += 1)
+		for (std::size_t j = 0; j < jobs_; j += 1)
 		{
 			fin >> matrix[i][j];
 		}
 	}
-
 	matrix_ = matrix;
 }
 
