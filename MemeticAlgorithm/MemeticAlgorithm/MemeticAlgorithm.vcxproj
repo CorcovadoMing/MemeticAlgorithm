@@ -79,6 +79,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="MemeticAlgorithm.h" />
+    <ClInclude Include="RandomRange.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />

@@ -1,4 +1,5 @@
 #include "MemeticAlgorithm.h"
+#include "RandomRange.h"
 #include <iostream>
 #include <fstream>
 #include <algorithm>
@@ -66,6 +67,7 @@ Chromosome MemeticAlgorithm::II(const Chromosome &chromosome)
 	Chromosome result(chromosome);
 	// TODO: Implement a II and improve result
 	// !!Implement!!: use randomSwap and fitness
+	// please use RandomRange::random<int>(min, max) or RandomRange::random<double>(min, max) to generate random number [min, max)
 	return result;
 }
 
@@ -74,6 +76,7 @@ Chromosome MemeticAlgorithm::SA(const Chromosome &chromosome)
 	Chromosome result(chromosome);
 	// TODO: Implement a SA and improve result
 	// !!Implement!!: use randomSwap and fitness
+	// please use RandomRange::random<int>(min, max) or RandomRange::random<double>(min, max) to generate random number [min, max)
 	return result;
 }
 
@@ -82,6 +85,7 @@ Chromosome MemeticAlgorithm::TS(const Chromosome &chromosome)
 	Chromosome result(chromosome);
 	// TODO: Implement a TS and improve result
 	// !!Implement!!: use randomSwap and fitness
+	// please use RandomRange::random<int>(min, max) or RandomRange::random<double>(min, max) to generate random number [min, max)
 	return result;
 }
 
