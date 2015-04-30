@@ -69,6 +69,9 @@ void MemeticAlgorithm::heuristicInitialize()
 void MemeticAlgorithm::randomSwap(Chromosome &chromosome)
 {
 	// Assign to Ming rf37535@gmail.com
+	const int firstElement = RandomRange::random<int>(0, chromosome.size() - 1);
+	const int secondElement = RandomRange::random<int>(0, chromosome.size() - 1);
+	std::swap(chromosome[firstElement], chromosome[secondElement]);
 }
 
 #pragma endregion
@@ -80,7 +83,7 @@ const Chromosome MemeticAlgorithm::II(const Chromosome &chromosome)
 	Chromosome result(chromosome);
 	// TODO: Implement a II and improve result
 	// !!Implement!!: use randomSwap and fitness
-	// please use RandomRange::random<int>(min, max) or RandomRange::random<double>(min, max) to generate random number [min, max)
+	// please use RandomRange::random<int>(min, max) or RandomRange::random<double>(min, max) to generate random number [min, max]
 	return result;
 }
 
@@ -89,7 +92,7 @@ const Chromosome MemeticAlgorithm::SA(const Chromosome &chromosome)
 	Chromosome result(chromosome);
 	// TODO: Implement a SA and improve result
 	// !!Implement!!: use randomSwap and fitness
-	// please use RandomRange::random<int>(min, max) or RandomRange::random<double>(min, max) to generate random number [min, max)
+	// please use RandomRange::random<int>(min, max) or RandomRange::random<double>(min, max) to generate random number [min, max]
 	return result;
 }
 
