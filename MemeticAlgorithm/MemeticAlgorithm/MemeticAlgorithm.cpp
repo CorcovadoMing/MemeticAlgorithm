@@ -4,8 +4,8 @@
 #include <fstream>
 #include <algorithm>
 
-MemeticAlgorithm::MemeticAlgorithm(const int population_size, const double crossover_rate, const double mutation_rate, const std::string& filename)
-	: population_size_(population_size), crossover_rate_(crossover_rate), mutation_rate_(mutation_rate), filename_(filename)
+MemeticAlgorithm::MemeticAlgorithm(const int population_size, const double crossover_rate, const double mutation_rate, const int localsearch_looptimes, const std::string& filename)
+	: population_size_(population_size), crossover_rate_(crossover_rate), mutation_rate_(mutation_rate), localsearch_looptimes_(localsearch_looptimes), filename_(filename)
 {
 	readfile();
 	if (jobs_ == 0 || machines_ == 0)
@@ -14,16 +14,16 @@ MemeticAlgorithm::MemeticAlgorithm(const int population_size, const double cross
 	}
 	population_ = Population(population_size_, Chromosome(jobs_, 0));
 
-	initialize_.push_back(randomInitialize);
-	initialize_.push_back(heuristicInitialize);
+	initialize_.push_back(std::mem_fn(&MemeticAlgorithm::randomInitialize));
+	initialize_.push_back(std::mem_fn(&MemeticAlgorithm::heuristicInitialize));
 
 	//crossover_ 
 
-	mutation_.push_back(randomSwap);
+	mutation_.push_back(std::mem_fn(&MemeticAlgorithm::randomSwap));
 
-	localsearch_.push_back(II);
-	localsearch_.push_back(SA);
-	localsearch_.push_back(TS);
+	localsearch_.push_back(std::mem_fn(&MemeticAlgorithm::II));
+	localsearch_.push_back(std::mem_fn(&MemeticAlgorithm::SA));
+	localsearch_.push_back(std::mem_fn(&MemeticAlgorithm::TS));
 }
 
 void MemeticAlgorithm::run()
@@ -31,19 +31,21 @@ void MemeticAlgorithm::run()
 	std::cout << "=== Testing ===" << std::endl;
 	for (std::size_t i = 0; i < initialize_.size(); i += 1)
 	{
-		initialize_[i]();
+		initialize_[i](this);
 	}
 
 	for (std::size_t i = 0; i < mutation_.size(); i += 1)
 	{
-		mutation_[i](population_[0]);
+		mutation_[i](this, population_[0]);
 	}
 
 	for (std::size_t i = 0; i < localsearch_.size(); i += 1)
 	{
-		localsearch_[i](population_[0]);
+		localsearch_[i](this, population_[0]);
 	}
 }
+
+#pragma region Initialization
 
 void MemeticAlgorithm::randomInitialize()
 {
@@ -57,12 +59,23 @@ void MemeticAlgorithm::heuristicInitialize()
 	// TODO: Implement a heuristic initialization
 }
 
+#pragma endregion
+
+#pragma region Crossover
+#pragma endregion
+
+#pragma region Mutation
+
 void MemeticAlgorithm::randomSwap(Chromosome &chromosome)
 {
-	// TODO: Implement a function that randomly swap two elements in chromosome 
+	// Assign to Ming rf37535@gmail.com
 }
 
-Chromosome MemeticAlgorithm::II(const Chromosome &chromosome)
+#pragma endregion
+
+#pragma region LocalSearch
+
+const Chromosome MemeticAlgorithm::II(const Chromosome &chromosome)
 {
 	Chromosome result(chromosome);
 	// TODO: Implement a II and improve result
@@ -71,7 +84,7 @@ Chromosome MemeticAlgorithm::II(const Chromosome &chromosome)
 	return result;
 }
 
-Chromosome MemeticAlgorithm::SA(const Chromosome &chromosome)
+const Chromosome MemeticAlgorithm::SA(const Chromosome &chromosome)
 {
 	Chromosome result(chromosome);
 	// TODO: Implement a SA and improve result
@@ -80,14 +93,14 @@ Chromosome MemeticAlgorithm::SA(const Chromosome &chromosome)
 	return result;
 }
 
-Chromosome MemeticAlgorithm::TS(const Chromosome &chromosome)
+const Chromosome MemeticAlgorithm::TS(const Chromosome &chromosome)
 {
+	// Assign to Ming rf37535@gmail.com
 	Chromosome result(chromosome);
-	// TODO: Implement a TS and improve result
-	// !!Implement!!: use randomSwap and fitness
-	// please use RandomRange::random<int>(min, max) or RandomRange::random<double>(min, max) to generate random number [min, max)
 	return result;
 }
+
+#pragma endregion
 
 #pragma region Helper-Functions
 
