@@ -17,7 +17,7 @@ MemeticAlgorithm::MemeticAlgorithm(const int population_size, const double cross
 	initialize_.push_back(std::mem_fn(&MemeticAlgorithm::randomInitialize));
 	initialize_.push_back(std::mem_fn(&MemeticAlgorithm::heuristicInitialize));
 
-	//crossover_ 
+	//crossover_
 
 	mutation_.push_back(std::mem_fn(&MemeticAlgorithm::randomSwap));
 
@@ -89,9 +89,31 @@ void MemeticAlgorithm::randomSwap(Chromosome &chromosome)
 const Chromosome MemeticAlgorithm::II(const Chromosome &chromosome)
 {
 	Chromosome result(chromosome);
+	// Assign to Shin bazukaoc@gmail.com
 	// TODO: Implement a II and improve result
 	// !!Implement!!: use randomSwap and fitness
 	// please use RandomRange::random<int>(min, max) or RandomRange::random<double>(min, max) to generate random number [min, max]
+   /// Random swap at first.
+    randomSwap(result);
+   /// I.I., using best improvement
+    int best = fitness(result);
+    for (std::size_t i = 0; i < jobs_ - 1; i += 1)
+    {
+        for (std::size_t j = i + 1; j < jobs_; j += 1)
+        {
+            std::swap(result[i], result[j]);
+            int score = fitness(result);
+            if( best > score )
+            {
+                best = score;
+            }
+            else
+            {
+                std::swap(result[j], result[i]);
+            }
+        }
+    }
+
 	return result;
 }
 
