@@ -49,14 +49,22 @@ void MemeticAlgorithm::run()
 
 void MemeticAlgorithm::randomInitialize()
 {
-	std::cout << "RandomInitialize" << std::endl;
-	// TODO: Implemet a randome initialization
+	// Assign to Ming rf37535@gmail.com [Done]
+	for (auto &i : population_)
+	{
+		int count = 0;
+		for (auto &j : i)
+		{
+			j = count;
+			count += 1;
+		}
+		std::shuffle(i.begin(), i.end(), RandomRange::RandomGenerator);
+	}
 }
 
 void MemeticAlgorithm::heuristicInitialize()
 {
-	std::cout << "HeuristicInitialize" << std::endl;
-	// TODO: Implement a heuristic initialization
+	// Assign to Ming rf37535@gmail.com
 }
 
 #pragma endregion
@@ -68,7 +76,7 @@ void MemeticAlgorithm::heuristicInitialize()
 
 void MemeticAlgorithm::randomSwap(Chromosome &chromosome)
 {
-	// Assign to Ming rf37535@gmail.com
+	// Assign to Ming rf37535@gmail.com [Done, may change]
 	const int firstElement = RandomRange::random<int>(0, chromosome.size() - 1);
 	const int secondElement = RandomRange::random<int>(0, chromosome.size() - 1);
 	std::swap(chromosome[firstElement], chromosome[secondElement]);

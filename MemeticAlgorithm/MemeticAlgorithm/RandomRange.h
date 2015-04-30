@@ -5,7 +5,7 @@ namespace RandomRange
 {
 
 	std::random_device rd;
-	std::mt19937 rng(rd());
+	std::mt19937 RandomGenerator(rd());
 
 	template <class T>
 	struct TypeIsInt
@@ -25,12 +25,12 @@ namespace RandomRange
 		if (TypeIsInt<T>::value)
 		{
 			std::uniform_int_distribution<int> uniform_int(min, max);
-			return uniform_int(rng);
+			return uniform_int(RandomGenerator);
 		}
 		else
 		{
 			std::uniform_real_distribution<double> uniform_real(min, max);
-			return uniform_real(rng);
+			return uniform_real(RandomGenerator);
 		}
 	}
 }
