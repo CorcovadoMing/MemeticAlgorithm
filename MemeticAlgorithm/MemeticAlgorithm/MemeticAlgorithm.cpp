@@ -73,47 +73,35 @@ void MemeticAlgorithm::heuristicInitialize()
 #pragma endregion
 
 #pragma region Mutation
-
-void MemeticAlgorithm::randomSwap(Chromosome &chromosome)
-{
-    // Assign to Ming rf37535@gmail.com [Done, may change]
-    const int firstElement = RandomRange::random<int>(0, chromosome.size() - 1);
-    const int secondElement = RandomRange::random<int>(0, chromosome.size() - 1);
-    std::swap(chromosome[firstElement], chromosome[secondElement]);
-}
-
 #pragma endregion
 
 #pragma region LocalSearch
 
 const Chromosome MemeticAlgorithm::II(const Chromosome &chromosome)
 {
+	// Assign to Shin bazukaoc@gmail.com
     Chromosome result(chromosome);
-    // Assign to Shin bazukaoc@gmail.com
-    // TODO: Implement a II and improve result
-    // !!Implement!!: use randomSwap and fitness
-    // please use RandomRange::random<int>(min, max) or RandomRange::random<double>(min, max) to generate random number [min, max]
-    /// Random swap at first.
-    randomSwap(result);
-    /// I.I., using best improvement
-    int best = fitness(result);
-    for (std::size_t i = 0; i < jobs_ - 1; i += 1)
-    {
-        for (std::size_t j = i + 1; j < jobs_; j += 1)
-        {
-            std::swap(result[i], result[j]);
-            int score = fitness(result);
-            if( best > score )
-            {
-                best = score;
-            }
-            else
-            {
-                std::swap(result[j], result[i]);
-            }
-        }
-    }
-
+	int best = fitness(result);
+	int looptimes = localsearch_looptimes_;
+	while (looptimes -= 1)
+	{
+		for (std::size_t i = 0; i < jobs_ - 1; i += 1)
+		{
+			for (std::size_t j = i + 1; j < jobs_; j += 1)
+			{
+				std::swap(result[i], result[j]);
+				int score = fitness(result);
+				if (best > score)
+				{
+					best = score;
+				}
+				else
+				{
+					std::swap(result[j], result[i]);
+				}
+			}
+		}
+	}
     return result;
 }
 
@@ -168,6 +156,13 @@ const int MemeticAlgorithm::fitness(const Chromosome& chromosome)
         }
     }
     return timespan[matrix_.size()];
+}
+
+void MemeticAlgorithm::randomSwap(Chromosome &chromosome)
+{
+	const int firstElement = RandomRange::random<int>(0, chromosome.size() - 1);
+	const int secondElement = RandomRange::random<int>(0, chromosome.size() - 1);
+	std::swap(chromosome[firstElement], chromosome[secondElement]);
 }
 
 #pragma endregion
