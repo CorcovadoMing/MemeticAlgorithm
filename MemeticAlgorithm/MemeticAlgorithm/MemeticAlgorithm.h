@@ -36,11 +36,11 @@ private:
 
 	void readfile();
 	const int fitness(const Chromosome &);
+	void randomSwap(Chromosome &);
 
 	void randomInitialize();
 	void heuristicInitialize();
 
-	void randomSwap(Chromosome &);
 
 	const Chromosome II(const Chromosome &);
 	const Chromosome SA(const Chromosome &);

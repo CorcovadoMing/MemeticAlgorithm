@@ -19,7 +19,7 @@ MemeticAlgorithm::MemeticAlgorithm(const int population_size, const double cross
 
     //crossover_
 
-    mutation_.push_back(std::mem_fn(&MemeticAlgorithm::randomSwap));
+    //mutation_.push_back(std::mem_fn(&MemeticAlgorithm::randomSwap)) - it's not the part of mutation
 
     localsearch_.push_back(std::mem_fn(&MemeticAlgorithm::II));
     localsearch_.push_back(std::mem_fn(&MemeticAlgorithm::SA));
