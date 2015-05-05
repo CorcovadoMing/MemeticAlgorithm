@@ -13,7 +13,7 @@ class MemeticAlgorithm
 	typedef std::function<void(MemeticAlgorithm*)> InitializeOperation;
 	typedef std::vector<InitializeOperation> Initialize;
 
-	typedef std::function<const Chromosome(MemeticAlgorithm*, const Chromosome &, const Chromosome &)> CrossoverOperation;
+	typedef std::function<void(MemeticAlgorithm*, Chromosome &, Chromosome &)> CrossoverOperation;
 	typedef std::vector<CrossoverOperation> Crossover;
 
 	typedef std::function<void(MemeticAlgorithm*, Chromosome &)> MutationOperation;
@@ -34,18 +34,30 @@ private:
 	Mutation mutation_;
 	LocalSearch localsearch_;
 
+	// Helper
 	void readfile();
 	const int fitness(const Chromosome &);
 	void randomSwap(Chromosome &);
 
+	// Initialize
 	void randomInitialize();
 	void heuristicInitialize();
+	
+	// Mating Selection
+	//void matingSelect();
 
+	// Crossover
+	void OX(Chromosome &, Chromosome &);
+	void LOX(Chromosome &, Chromosome &);
+	void PMX(Chromosome &, Chromosome &);
+	void CX(Chromosome &, Chromosome &);
 
+	// Mutation
+
+	// Local Search
 	const Chromosome II(const Chromosome &);
 	const Chromosome SA(const Chromosome &);
 	const Chromosome TS(const Chromosome &);
-	//void matingSelect();
 	//void environmentSelect();
 
 	const double crossover_rate_;

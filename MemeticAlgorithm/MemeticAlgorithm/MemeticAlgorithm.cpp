@@ -18,6 +18,10 @@ MemeticAlgorithm::MemeticAlgorithm(const int population_size, const double cross
     initialize_.push_back(std::mem_fn(&MemeticAlgorithm::heuristicInitialize));
 
     //crossover_
+	crossover_.push_back(std::mem_fn(&MemeticAlgorithm::OX));
+	crossover_.push_back(std::mem_fn(&MemeticAlgorithm::LOX));
+	crossover_.push_back(std::mem_fn(&MemeticAlgorithm::PMX));
+	crossover_.push_back(std::mem_fn(&MemeticAlgorithm::CX));
 
     //mutation_.push_back(std::mem_fn(&MemeticAlgorithm::randomSwap)) - it's not the part of mutation
 
@@ -33,6 +37,11 @@ void MemeticAlgorithm::run()
     {
         initialize_[i](this);
     }
+
+	for (std::size_t i = 0; i < crossover_.size(); i += 1)
+	{
+		crossover_[i](this, population_[0], population_[1]);
+	}
 
     for (std::size_t i = 0; i < mutation_.size(); i += 1)
     {
@@ -70,6 +79,27 @@ void MemeticAlgorithm::heuristicInitialize()
 #pragma endregion
 
 #pragma region Crossover
+
+void MemeticAlgorithm::OX(Chromosome &first_parent, Chromosome &second_parent)
+{
+	// TODO: Implement OX to first_parent and second_parent
+}
+
+void MemeticAlgorithm::LOX(Chromosome &first_parent, Chromosome &second_parent)
+{
+	// TODO: Implement LOX to first_parent and second_parent
+}
+
+void MemeticAlgorithm::PMX(Chromosome &first_parent, Chromosome &second_parent)
+{
+	// TODO: Implement PMX to first_parent and second_parent
+}
+
+void MemeticAlgorithm::CX(Chromosome &first_parent, Chromosome &second_parent)
+{
+	// TODO: Implement CX to first_parent and second_parent
+}
+
 #pragma endregion
 
 #pragma region Mutation
