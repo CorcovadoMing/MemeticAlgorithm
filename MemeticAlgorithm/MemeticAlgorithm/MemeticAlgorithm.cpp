@@ -139,6 +139,7 @@ const Chromosome MemeticAlgorithm::SA(const Chromosome &chromosome)
 {
     Chromosome result(chromosome);
     // TODO: Implement a SA and improve result
+    // assign to wai
     // !!Implement!!: use randomSwap and fitness
     // please use RandomRange::random<int>(min, max) or RandomRange::random<double>(min, max) to generate random number [min, max]
     return result;
