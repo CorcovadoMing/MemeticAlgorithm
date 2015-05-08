@@ -139,9 +139,39 @@ const Chromosome MemeticAlgorithm::SA(const Chromosome &chromosome)
 {
     Chromosome result(chromosome);
     // TODO: Implement a SA and improve result
-    // assign to wai
+    // assign to Wei
     // !!Implement!!: use randomSwap and fitness
     // please use RandomRange::random<int>(min, max) or RandomRange::random<double>(min, max) to generate random number [min, max]
+    int best = fitness(result), score;
+	int looptimes = localsearch_looptimes_;
+	//initial temperature is 2000.
+	double temperature = 2000;
+	int changefirst, changesecond;
+	//stop when looptimes is 0, or temparature
+	while (looptimes -= 1 && temperature >= 1)
+	{
+        changefirst = RandomRange::random<int>(0, jobs_);
+        changesecond = RandomRange::random<int>(0, jobs_);
+        std::swap(result[changefirst], result[changesecond]);
+        score = fitness(result);
+        if (best > score)
+        {
+            best = score;
+        }
+        else
+        {
+            if(RandomRange::random<double>(0, 1) < exp((best - score) / temperature))
+            {
+                best = score;
+            }
+            else
+            {
+                std::swap(result[changefirst], result[changesecond]);
+            }
+        }
+        //cooling schedule
+		temperature *= 0.99;
+	}
     return result;
 }
 
