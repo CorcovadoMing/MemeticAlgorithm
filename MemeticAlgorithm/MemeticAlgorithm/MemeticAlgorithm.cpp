@@ -18,10 +18,10 @@ MemeticAlgorithm::MemeticAlgorithm(const int population_size, const double cross
     initialize_.push_back(std::mem_fn(&MemeticAlgorithm::heuristicInitialize));
 
     //crossover_
-	crossover_.push_back(std::mem_fn(&MemeticAlgorithm::OX));
-	crossover_.push_back(std::mem_fn(&MemeticAlgorithm::LOX));
-	crossover_.push_back(std::mem_fn(&MemeticAlgorithm::PMX));
-	crossover_.push_back(std::mem_fn(&MemeticAlgorithm::CX));
+    crossover_.push_back(std::mem_fn(&MemeticAlgorithm::OX));
+    crossover_.push_back(std::mem_fn(&MemeticAlgorithm::LOX));
+    crossover_.push_back(std::mem_fn(&MemeticAlgorithm::PMX));
+    crossover_.push_back(std::mem_fn(&MemeticAlgorithm::CX));
 
     //mutation_.push_back(std::mem_fn(&MemeticAlgorithm::randomSwap)) - it's not the part of mutation
 
@@ -38,10 +38,10 @@ void MemeticAlgorithm::run()
         initialize_[i](this);
     }
 
-	for (std::size_t i = 0; i < crossover_.size(); i += 1)
-	{
-		crossover_[i](this, population_[0], population_[1]);
-	}
+    for (std::size_t i = 0; i < crossover_.size(); i += 1)
+    {
+        crossover_[i](this, population_[0], population_[1]);
+    }
 
     for (std::size_t i = 0; i < mutation_.size(); i += 1)
     {
@@ -82,22 +82,22 @@ void MemeticAlgorithm::heuristicInitialize()
 
 void MemeticAlgorithm::OX(Chromosome &first_parent, Chromosome &second_parent)
 {
-	// TODO: Implement OX to first_parent and second_parent
+    // TODO: Implement OX to first_parent and second_parent
 }
 
 void MemeticAlgorithm::LOX(Chromosome &first_parent, Chromosome &second_parent)
 {
-	// TODO: Implement LOX to first_parent and second_parent
+    // TODO: Implement LOX to first_parent and second_parent
 }
 
 void MemeticAlgorithm::PMX(Chromosome &first_parent, Chromosome &second_parent)
 {
-	// TODO: Implement PMX to first_parent and second_parent
+    // TODO: Implement PMX to first_parent and second_parent
 }
 
 void MemeticAlgorithm::CX(Chromosome &first_parent, Chromosome &second_parent)
 {
-	// TODO: Implement CX to first_parent and second_parent
+    // TODO: Implement CX to first_parent and second_parent
 }
 
 #pragma endregion
@@ -109,47 +109,42 @@ void MemeticAlgorithm::CX(Chromosome &first_parent, Chromosome &second_parent)
 
 const Chromosome MemeticAlgorithm::II(const Chromosome &chromosome)
 {
-	// Assign to Shin bazukaoc@gmail.com
+    // Assign to Shin bazukaoc@gmail.com
     Chromosome result(chromosome);
-	int best = fitness(result);
-	int looptimes = localsearch_looptimes_;
-	while (looptimes -= 1)
-	{
-		for (std::size_t i = 0; i < jobs_ - 1; i += 1)
-		{
-			for (std::size_t j = i + 1; j < jobs_; j += 1)
-			{
-				std::swap(result[i], result[j]);
-				int score = fitness(result);
-				if (best > score)
-				{
-					best = score;
-				}
-				else
-				{
-					std::swap(result[j], result[i]);
-				}
-			}
-		}
-	}
+    int best = fitness(result);
+    int looptimes = localsearch_looptimes_;
+    while (looptimes -= 1)
+    {
+        for (std::size_t i = 0; i < jobs_ - 1; i += 1)
+        {
+            for (std::size_t j = i + 1; j < jobs_; j += 1)
+            {
+                std::swap(result[i], result[j]);
+                int score = fitness(result);
+                if (best > score)
+                {
+                    best = score;
+                }
+                else
+                {
+                    std::swap(result[j], result[i]);
+                }
+            }
+        }
+    }
     return result;
 }
 
 const Chromosome MemeticAlgorithm::SA(const Chromosome &chromosome)
 {
+// assign to Wei
     Chromosome result(chromosome);
-    // TODO: Implement a SA and improve result
-    // assign to Wei
-    // !!Implement!!: use randomSwap and fitness
-    // please use RandomRange::random<int>(min, max) or RandomRange::random<double>(min, max) to generate random number [min, max]
     int best = fitness(result), score;
-	int looptimes = localsearch_looptimes_;
-	//initial temperature is 2000.
-	double temperature = 2000;
-	int changefirst, changesecond;
-	//stop when looptimes is 0, or temparature
-	while (looptimes -= 1 && temperature >= 1)
-	{
+    int looptimes = localsearch_looptimes_;
+    double temperature = 2000;
+    int changefirst, changesecond;
+    while (looptimes -= 1 && temperature >= 1)
+    {
         changefirst = RandomRange::random<int>(0, jobs_);
         changesecond = RandomRange::random<int>(0, jobs_);
         std::swap(result[changefirst], result[changesecond]);
@@ -169,9 +164,8 @@ const Chromosome MemeticAlgorithm::SA(const Chromosome &chromosome)
                 std::swap(result[changefirst], result[changesecond]);
             }
         }
-        //cooling schedule
-		temperature *= 0.99;
-	}
+        temperature *= 0.99;
+    }
     return result;
 }
 
@@ -221,9 +215,9 @@ const int MemeticAlgorithm::fitness(const Chromosome& chromosome)
 
 void MemeticAlgorithm::randomSwap(Chromosome &chromosome)
 {
-	const int firstElement = RandomRange::random<int>(0, chromosome.size() - 1);
-	const int secondElement = RandomRange::random<int>(0, chromosome.size() - 1);
-	std::swap(chromosome[firstElement], chromosome[secondElement]);
+    const int firstElement = RandomRange::random<int>(0, chromosome.size() - 1);
+    const int secondElement = RandomRange::random<int>(0, chromosome.size() - 1);
+    std::swap(chromosome[firstElement], chromosome[secondElement]);
 }
 
 #pragma endregion
