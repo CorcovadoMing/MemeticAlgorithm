@@ -148,7 +148,7 @@ const Chromosome MemeticAlgorithm::SA(const Chromosome &chromosome)
 	double temperature = 2000;
 	int changefirst, changesecond;
 	//stop when looptimes is 0, or temparature
-	while (looptimes -= 1 && temperature >= 1)
+	while (looptimes > 0 && temperature >= 1)
 	{
         changefirst = RandomRange::random<int>(0, jobs_);
         changesecond = RandomRange::random<int>(0, jobs_);
@@ -171,6 +171,7 @@ const Chromosome MemeticAlgorithm::SA(const Chromosome &chromosome)
         }
         //cooling schedule
 		temperature *= 0.99;
+		looptimes -= 1;
 	}
     return result;
 }
