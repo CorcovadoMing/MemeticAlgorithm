@@ -140,21 +140,11 @@ const Chromosome MemeticAlgorithm::SA(const Chromosome &chromosome)
     // assign to Wei
     Chromosome result(chromosome);
     int best = fitness(result), score;
-<<<<<<< HEAD
-	int looptimes = localsearch_looptimes_;
-	//initial temperature is 2000.
-	double temperature = 2000;
-	int changefirst, changesecond;
-	//stop when looptimes is 0, or temparature
-	while (looptimes > 0 && temperature >= 1)
-	{
-=======
     int looptimes = localsearch_looptimes_;
     double temperature = 2000;
     int changefirst, changesecond;
     while (looptimes -= 1 && temperature >= 1)
     {
->>>>>>> origin/master
         changefirst = RandomRange::random<int>(0, jobs_);
         changesecond = RandomRange::random<int>(0, jobs_);
         std::swap(result[changefirst], result[changesecond]);
@@ -174,15 +164,8 @@ const Chromosome MemeticAlgorithm::SA(const Chromosome &chromosome)
                 std::swap(result[changefirst], result[changesecond]);
             }
         }
-<<<<<<< HEAD
-        //cooling schedule
-		temperature *= 0.99;
-		looptimes -= 1;
-	}
-=======
         temperature *= 0.99;
     }
->>>>>>> origin/master
     return result;
 }
 
@@ -266,13 +249,6 @@ const int MemeticAlgorithm::fitness(const Chromosome& chromosome)
         }
     }
     return timespan[matrix_.size()];
-}
-
-void MemeticAlgorithm::randomSwap(Chromosome &chromosome)
-{
-    const int firstElement = RandomRange::random<int>(0, chromosome.size() - 1);
-    const int secondElement = RandomRange::random<int>(0, chromosome.size() - 1);
-    std::swap(chromosome[firstElement], chromosome[secondElement]);
 }
 
 #pragma endregion

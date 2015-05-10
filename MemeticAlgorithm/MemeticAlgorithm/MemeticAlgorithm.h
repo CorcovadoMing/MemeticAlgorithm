@@ -37,7 +37,6 @@ private:
     // Helper
     void readfile();
     const int fitness(const Chromosome &);
-    void randomSwap(Chromosome &);
 
     // Initialize
     void randomInitialize();
