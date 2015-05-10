@@ -48,10 +48,10 @@ void MemeticAlgorithm::run()
         mutation_[i](this, population_[0]);
     }
 
-    for (std::size_t i = 0; i < localsearch_.size(); i += 1)
-    {
-        localsearch_[i](this, population_[0]);
-    }
+    //for (std::size_t i = 2; i < localsearch_.size(); i += 1)
+    //{
+        localsearch_[1](this, population_[0]);
+    //}
 }
 
 #pragma region Initialization
@@ -137,7 +137,7 @@ const Chromosome MemeticAlgorithm::II(const Chromosome &chromosome)
 
 const Chromosome MemeticAlgorithm::SA(const Chromosome &chromosome)
 {
-// assign to Wei
+    // assign to Wei
     Chromosome result(chromosome);
     int best = fitness(result), score;
     int looptimes = localsearch_looptimes_;
@@ -171,9 +171,47 @@ const Chromosome MemeticAlgorithm::SA(const Chromosome &chromosome)
 
 const Chromosome MemeticAlgorithm::TS(const Chromosome &chromosome)
 {
-    // Assign to Ming rf37535@gmail.com
-    Chromosome result(chromosome);
-    return result;
+	// Assign to Ming rf37535@gmail.com
+	const int tabu_length = 7;
+	int tabu_current = 0;
+	std::vector<int> tabulist(tabu_length, 0);
+	Chromosome result(chromosome);
+	int looptimes = localsearch_looptimes_;
+	while (looptimes -= 1)
+	{
+		int best = INT_MAX;
+		Chromosome current_best;
+		for (std::size_t i = 0; i < jobs_ - 1; i += 1)
+		{
+			for (std::size_t j = i + 1; j < jobs_; j += 1)
+			{
+				std::swap(result[i], result[j]);
+				int score = fitness(result);
+				bool in_tabu = false;
+				for (std::size_t k = 0; k < tabu_length; k += 1)
+				{
+					if (score == tabulist[k])
+					{
+						in_tabu = true;
+					}
+				}
+				if (!in_tabu)
+				{
+					if (score < best)
+					{
+						best = score;
+						current_best = result;
+					}
+				}
+				std::swap(result[i], result[j]);
+			}
+		}
+		tabulist[tabu_current] = best;
+		tabu_current += 1;
+		tabu_current = tabu_current % tabu_length;
+		result = current_best;
+	}
+	return result;
 }
 
 #pragma endregion
