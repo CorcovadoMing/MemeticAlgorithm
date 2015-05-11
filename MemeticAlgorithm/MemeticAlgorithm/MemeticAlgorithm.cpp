@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <algorithm>
+#include <limits.h>
 
 MemeticAlgorithm::MemeticAlgorithm(const int population_size, const double crossover_rate, const double mutation_rate, const int localsearch_looptimes, const std::string& filename)
     : population_size_(population_size), crossover_rate_(crossover_rate), mutation_rate_(mutation_rate), localsearch_looptimes_(localsearch_looptimes), filename_(filename)
@@ -124,6 +125,7 @@ const Chromosome MemeticAlgorithm::II(const Chromosome &chromosome)
                 if (best > score)
                 {
                     best = score;
+                    return result; // first improvement
                 }
                 else
                 {
