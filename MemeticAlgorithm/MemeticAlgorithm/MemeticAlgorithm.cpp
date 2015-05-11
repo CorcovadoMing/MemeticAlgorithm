@@ -238,12 +238,14 @@ const Chromosome MemeticAlgorithm::TS(const Chromosome &chromosome)
 const int MemeticAlgorithm::applyLocalSearchByLamarckian(Chromosome &chromosome)
 {
 	// Implement the Lamarckian function
+	// Apply local search and update the chromosome, return updated fitness
 	return fitness_(chromosome);
 }
 
 const int MemeticAlgorithm::applyLocalSearchByBaldwinian(Chromosome &chromosome)
 {
 	// Implement the Baldwinian function
+	// Only apply local search, return updated fitness
 	return fitness_(chromosome);
 }
 
