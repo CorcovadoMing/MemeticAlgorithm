@@ -3,12 +3,14 @@
 #include <iostream>
 #include <fstream>
 #include <algorithm>
-#include <limits.h>
+#include <climits>
+
+#pragma region Constructor
 
 MemeticAlgorithm::MemeticAlgorithm(const int population_size, const double crossover_rate, const double mutation_rate, const int localsearch_looptimes, const std::string& filename)
     : population_size_(population_size), crossover_rate_(crossover_rate), mutation_rate_(mutation_rate), localsearch_looptimes_(localsearch_looptimes), filename_(filename)
 {
-    readfile();
+    readfile_();
     if (jobs_ == 0 || machines_ == 0)
     {
         std::cout << "[Error] jobs = 0, machines = 0" << std::endl;
@@ -18,18 +20,24 @@ MemeticAlgorithm::MemeticAlgorithm(const int population_size, const double cross
     initialize_.push_back(std::mem_fn(&MemeticAlgorithm::randomInitialize));
     initialize_.push_back(std::mem_fn(&MemeticAlgorithm::heuristicInitialize));
 
-    //crossover_
     crossover_.push_back(std::mem_fn(&MemeticAlgorithm::OX));
     crossover_.push_back(std::mem_fn(&MemeticAlgorithm::LOX));
     crossover_.push_back(std::mem_fn(&MemeticAlgorithm::PMX));
     crossover_.push_back(std::mem_fn(&MemeticAlgorithm::CX));
 
-    //mutation_.push_back(std::mem_fn(&MemeticAlgorithm::randomSwap)) - it's not the part of mutation
+    //mutation_
 
-    localsearch_.push_back(std::mem_fn(&MemeticAlgorithm::II));
-    localsearch_.push_back(std::mem_fn(&MemeticAlgorithm::SA));
-    localsearch_.push_back(std::mem_fn(&MemeticAlgorithm::TS));
+	localSearch_.push_back(std::mem_fn(&MemeticAlgorithm::II));
+	localSearch_.push_back(std::mem_fn(&MemeticAlgorithm::SA));
+	localSearch_.push_back(std::mem_fn(&MemeticAlgorithm::TS));
+
+	applyLocalSearch_.push_back(std::mem_fn(&MemeticAlgorithm::applyLocalSearchByLamarckian));
+	applyLocalSearch_.push_back(std::mem_fn(&MemeticAlgorithm::applyLocalSearchByBaldwinian));
 }
+
+#pragma endregion
+
+#pragma region MainLogic
 
 void MemeticAlgorithm::run()
 {
@@ -51,9 +59,16 @@ void MemeticAlgorithm::run()
 
     //for (std::size_t i = 2; i < localsearch_.size(); i += 1)
     //{
-        localsearch_[1](this, population_[0]);
+    //    localSearch_[1](this, population_[0]);
     //}
+
+	for (std::size_t i = 0; i < applyLocalSearch_.size(); i += 1)
+	{
+		applyLocalSearch_[i](this, population_[0]);
+	}
 }
+
+#pragma endregion
 
 #pragma region Initialization
 
@@ -110,9 +125,9 @@ void MemeticAlgorithm::CX(Chromosome &first_parent, Chromosome &second_parent)
 
 const Chromosome MemeticAlgorithm::II(const Chromosome &chromosome)
 {
-    // Assign to Shin bazukaoc@gmail.com
+    // Assign to Shin bazukaoc@gmail.com [Done]
     Chromosome result(chromosome);
-    int best = fitness(result);
+    int best = fitness_(result);
     int looptimes = localsearch_looptimes_;
     while (looptimes -= 1)
     {
@@ -121,11 +136,11 @@ const Chromosome MemeticAlgorithm::II(const Chromosome &chromosome)
             for (std::size_t j = i + 1; j < jobs_; j += 1)
             {
                 std::swap(result[i], result[j]);
-                int score = fitness(result);
+				int score = fitness_(result);
                 if (best > score)
                 {
                     best = score;
-                    return result; // first improvement
+                    return result;
                 }
                 else
                 {
@@ -139,9 +154,9 @@ const Chromosome MemeticAlgorithm::II(const Chromosome &chromosome)
 
 const Chromosome MemeticAlgorithm::SA(const Chromosome &chromosome)
 {
-    // assign to Wei
+    // Assign to Wei [Need fix]
     Chromosome result(chromosome);
-    int best = fitness(result), score;
+	int best = fitness_(result), score;
     int looptimes = localsearch_looptimes_;
     double temperature = 2000;
     int changefirst, changesecond;
@@ -150,7 +165,7 @@ const Chromosome MemeticAlgorithm::SA(const Chromosome &chromosome)
         changefirst = RandomRange::random<int>(0, jobs_);
         changesecond = RandomRange::random<int>(0, jobs_);
         std::swap(result[changefirst], result[changesecond]);
-        score = fitness(result);
+		score = fitness_(result);
         if (best > score)
         {
             best = score;
@@ -173,7 +188,7 @@ const Chromosome MemeticAlgorithm::SA(const Chromosome &chromosome)
 
 const Chromosome MemeticAlgorithm::TS(const Chromosome &chromosome)
 {
-	// Assign to Ming rf37535@gmail.com
+	// Assign to Ming rf37535@gmail.com [Done]
 	const int tabu_length = 7;
 	int tabu_current = 0;
 	std::vector<int> tabulist(tabu_length, 0);
@@ -188,7 +203,7 @@ const Chromosome MemeticAlgorithm::TS(const Chromosome &chromosome)
 			for (std::size_t j = i + 1; j < jobs_; j += 1)
 			{
 				std::swap(result[i], result[j]);
-				int score = fitness(result);
+				int score = fitness_(result);
 				bool in_tabu = false;
 				for (std::size_t k = 0; k < tabu_length; k += 1)
 				{
@@ -218,9 +233,25 @@ const Chromosome MemeticAlgorithm::TS(const Chromosome &chromosome)
 
 #pragma endregion
 
+#pragma region ApplyLocalSearch
+
+const int MemeticAlgorithm::applyLocalSearchByLamarckian(Chromosome &chromosome)
+{
+	// Implement the Lamarckian function
+	return fitness_(chromosome);
+}
+
+const int MemeticAlgorithm::applyLocalSearchByBaldwinian(Chromosome &chromosome)
+{
+	// Implement the Baldwinian function
+	return fitness_(chromosome);
+}
+
+#pragma endregion
+
 #pragma region Helper-Functions
 
-void MemeticAlgorithm::readfile()
+void MemeticAlgorithm::readfile_()
 {
     std::string useless;
     std::ifstream fin;
@@ -240,7 +271,7 @@ void MemeticAlgorithm::readfile()
     matrix_ = matrix;
 }
 
-const int MemeticAlgorithm::fitness(const Chromosome& chromosome)
+const int MemeticAlgorithm::fitness_(const Chromosome& chromosome)
 {
     std::vector<int> timespan(matrix_.size() + 1, 0);
     for (std::size_t i = 0; i < matrix_[0].size(); i += 1)

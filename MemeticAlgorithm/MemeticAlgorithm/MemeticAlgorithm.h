@@ -22,6 +22,9 @@ class MemeticAlgorithm
     typedef std::function<const Chromosome(MemeticAlgorithm*, const Chromosome &)> LocalSearchOperation;
     typedef std::vector<LocalSearchOperation> LocalSearch;
 
+	typedef std::function<const int(MemeticAlgorithm*, Chromosome &)> ApplyLocalSearchOperation;
+	typedef std::vector<ApplyLocalSearchOperation> ApplyLocalSearch;
+
 public:
     MemeticAlgorithm(const int, const double, const double, const int, const std::string &);
     void run();
@@ -32,11 +35,12 @@ private:
     Initialize initialize_;
     Crossover crossover_;
     Mutation mutation_;
-    LocalSearch localsearch_;
+    LocalSearch localSearch_;
+	ApplyLocalSearch applyLocalSearch_;
 
     // Helper
-    void readfile();
-    const int fitness(const Chromosome &);
+    void readfile_();
+    const int fitness_(const Chromosome &);
 
     // Initialize
     void randomInitialize();
@@ -57,6 +61,11 @@ private:
     const Chromosome II(const Chromosome &);
     const Chromosome SA(const Chromosome &);
     const Chromosome TS(const Chromosome &);
+
+	// Apply Local Search
+	const int applyLocalSearchByLamarckian(Chromosome &);
+	const int applyLocalSearchByBaldwinian(Chromosome &);
+
     //void environmentSelect();
 
     const double crossover_rate_;
