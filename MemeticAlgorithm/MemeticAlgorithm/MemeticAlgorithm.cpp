@@ -162,10 +162,10 @@ const Chromosome MemeticAlgorithm::SA(const Chromosome &chromosome)
     int changefirst, changesecond;
     while (looptimes -= 1 && temperature >= 1)
     {
-        changefirst = RandomRange::random<int>(0, jobs_);
-        changesecond = RandomRange::random<int>(0, jobs_);
+        changefirst = RandomRange::random<int>(0, jobs_ - 1);
+        changesecond = RandomRange::random<int>(0, jobs_ - 1);
         std::swap(result[changefirst], result[changesecond]);
-		score = fitness_(result);
+        score = fitness_(result);
         if (best > score)
         {
             best = score;
