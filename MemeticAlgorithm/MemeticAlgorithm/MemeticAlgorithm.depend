@@ -1,0 +1,20 @@
+# depslib dependency file v1.0
+1431444655 source:c:\users\bazukaoc\desktop\memeticalgorithm\memeticalgorithm\memeticalgorithm\main.cpp
+	"MemeticAlgorithm.h"
+	<iostream>
+
+1431444319 c:\users\bazukaoc\desktop\memeticalgorithm\memeticalgorithm\memeticalgorithm\memeticalgorithm.h
+	<vector>
+	<string>
+	<functional>
+
+1431444648 source:c:\users\bazukaoc\desktop\memeticalgorithm\memeticalgorithm\memeticalgorithm\memeticalgorithm.cpp
+	"MemeticAlgorithm.h"
+	"RandomRange.h"
+	<iostream>
+	<fstream>
+	<algorithm>
+
+1430424692 c:\users\bazukaoc\desktop\memeticalgorithm\memeticalgorithm\memeticalgorithm\randomrange.h
+	<random>
+
