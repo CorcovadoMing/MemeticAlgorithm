@@ -3,7 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <algorithm>
-//#include <climits>
+#include <climits>
 
 #pragma region Constructor
 
@@ -57,10 +57,10 @@ void MemeticAlgorithm::run()
         mutation_[i](this, population_[0]);
     }
 
-    for (std::size_t i = 2; i < localSearch_.size(); i += 1)
-    {
-        localSearch_[1](this, population_[0]);
-    }
+    //for (std::size_t i = 2; i < localsearch_.size(); i += 1)
+    //{
+    //    localSearch_[1](this, population_[0]);
+    //}
 
 	for (std::size_t i = 0; i < applyLocalSearch_.size(); i += 1)
 	{
@@ -104,50 +104,6 @@ void MemeticAlgorithm::OX(Chromosome &first_parent, Chromosome &second_parent)
 void MemeticAlgorithm::LOX(Chromosome &first_parent, Chromosome &second_parent)
 {
     // TODO: Implement LOX to first_parent and second_parent
-    std::size_t chromosome_size = first_parent.size();
-    int inherit_index  = RandomRange::random<int>(0, chromosome_size - 2);
-    int inherit_length = RandomRange::random<int>(inherit_index, chromosome_size - 1) - inherit_index;
-
-    Chromosome first_temp  = second_parent, first_child;
-    Chromosome second_temp = first_parent, second_child;
-    for(std::size_t i = 0; i < chromosome_size; i += 1)
-    {
-        for(std::size_t j = 0; j < inherit_length; j += 1)
-        {
-            if(first_temp[i] == first_parent[inherit_index+j])
-            {
-                first_temp[i] = -1;
-            }
-            if(second_temp[i] == second_parent[inherit_index+j])
-            {
-                second_temp[i] = -1;
-            }
-        }
-    }
-    for(std::size_t i = 0, k = 0; i < chromosome_size; i += 1)
-    {
-        if(i == inherit_index)
-        {
-            for(std::size_t j = 0; j < inherit_length; j += 1)
-            {
-                first_child.push_back(first_parent[inherit_index+j]);
-                second_child.push_back(second_parent[inherit_index+j]);
-            }
-            i += (inherit_length - 1);
-        }
-        else
-        {
-            while(first_temp[k] == -1 && k < chromosome_size)
-            {
-                k += 1;
-            }
-            first_child.push_back(first_temp[k]);
-            second_child.push_back(second_temp[k]);
-            k += 1;
-        }
-    }
-    first_parent  = first_child;
-    second_parent = second_child;
 }
 
 void MemeticAlgorithm::PMX(Chromosome &first_parent, Chromosome &second_parent)
