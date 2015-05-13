@@ -90,7 +90,7 @@ void MemeticAlgorithm::randomInitialize()
 void MemeticAlgorithm::heuristicInitialize()
 {
     // Assign to Ming rf37535@gmail.com [Done]
-	const int heuristic_solution_size = population_size_ / 10;
+	const std::size_t heuristic_solution_size = population_size_ / 10;
 	randomInitialize();
 	for (std::size_t i = 0; i < heuristic_solution_size; i += 1)
 	{
@@ -111,8 +111,8 @@ void MemeticAlgorithm::LOX(Chromosome &first_parent, Chromosome &second_parent)
 {
     // TODO: Implement LOX to first_parent and second_parent
     std::size_t chromosome_size = first_parent.size();
-    int inherit_index  = RandomRange::random<int>(0, chromosome_size - 2);
-    int inherit_length = RandomRange::random<int>(inherit_index, chromosome_size - 1) - inherit_index;
+	std::size_t inherit_index = RandomRange::random<int>(0, chromosome_size - 2);
+	std::size_t inherit_length = RandomRange::random<int>(inherit_index, chromosome_size - 1) - inherit_index;
 
     Chromosome first_temp  = second_parent, first_child;
     Chromosome second_temp = first_parent, second_child;
