@@ -3,7 +3,6 @@
 #include <iostream>
 #include <fstream>
 #include <algorithm>
-//#include <climits>
 
 #pragma region Constructor
 
@@ -102,12 +101,12 @@ void MemeticAlgorithm::heuristicInitialize()
 
 #pragma region Crossover
 
-void MemeticAlgorithm::OX(Chromosome &first_parent, Chromosome &second_parent)
+void MemeticAlgorithm::OX(const Chromosome &first_parent, const Chromosome &second_parent)
 {
     // TODO: Implement OX to first_parent and second_parent
 }
 
-void MemeticAlgorithm::LOX(Chromosome &first_parent, Chromosome &second_parent)
+void MemeticAlgorithm::LOX(const Chromosome &first_parent, const Chromosome &second_parent)
 {
     // TODO: Implement LOX to first_parent and second_parent
     std::size_t chromosome_size = first_parent.size();
@@ -152,16 +151,16 @@ void MemeticAlgorithm::LOX(Chromosome &first_parent, Chromosome &second_parent)
             k += 1;
         }
     }
-    first_parent  = first_child;
-    second_parent = second_child;
+    //first_parent  = first_child;
+    //second_parent = second_child;
 }
 
-void MemeticAlgorithm::PMX(Chromosome &first_parent, Chromosome &second_parent)
+void MemeticAlgorithm::PMX(const Chromosome &first_parent, const Chromosome &second_parent)
 {
     // TODO: Implement PMX to first_parent and second_parent
 }
 
-void MemeticAlgorithm::CX(Chromosome &first_parent, Chromosome &second_parent)
+void MemeticAlgorithm::CX(const Chromosome &first_parent, const Chromosome &second_parent)
 {
     // TODO: Implement CX to first_parent and second_parent
 }

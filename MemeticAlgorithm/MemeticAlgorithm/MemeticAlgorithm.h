@@ -13,7 +13,7 @@ class MemeticAlgorithm
     typedef std::function<void(MemeticAlgorithm*)> InitializeOperation;
     typedef std::vector<InitializeOperation> Initialize;
 
-    typedef std::function<void(MemeticAlgorithm*, Chromosome &, Chromosome &)> CrossoverOperation;
+    typedef std::function<void(MemeticAlgorithm*, const Chromosome &, const Chromosome &)> CrossoverOperation;
     typedef std::vector<CrossoverOperation> Crossover;
 
     typedef std::function<void(MemeticAlgorithm*, Chromosome &)> MutationOperation;
@@ -30,7 +30,7 @@ public:
     void run();
 
 private:
-    Population population_;
+    Population population_, offspring_;
     Matrix matrix_;
     Initialize initialize_;
     Crossover crossover_;
@@ -50,10 +50,10 @@ private:
     //void matingSelect();
 
     // Crossover
-    void OX(Chromosome &, Chromosome &);
-    void LOX(Chromosome &, Chromosome &);
-    void PMX(Chromosome &, Chromosome &);
-    void CX(Chromosome &, Chromosome &);
+	void OX(const Chromosome &, const Chromosome &);
+	void LOX(const Chromosome &, const Chromosome &);
+	void PMX(const Chromosome &, const Chromosome &);
+	void CX(const Chromosome &, const Chromosome &);
 
     // Mutation
 
