@@ -151,8 +151,8 @@ void MemeticAlgorithm::LOX(const Chromosome &first_parent, const Chromosome &sec
             k += 1;
         }
     }
-    //first_parent  = first_child;
-    //second_parent = second_child;
+	offspring_.push_back(first_child);
+	offspring_.push_back(second_child);
 }
 
 void MemeticAlgorithm::PMX(const Chromosome &first_parent, const Chromosome &second_parent)
