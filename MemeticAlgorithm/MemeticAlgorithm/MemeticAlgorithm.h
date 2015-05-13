@@ -22,7 +22,7 @@ class MemeticAlgorithm
     typedef std::function<const Chromosome(MemeticAlgorithm*, const Chromosome &)> LocalSearchOperation;
     typedef std::vector<LocalSearchOperation> LocalSearch;
 
-	typedef std::function<const int(MemeticAlgorithm*, Chromosome &)> ApplyLocalSearchOperation;
+	typedef std::function<const int(MemeticAlgorithm*, Chromosome &, const int)> ApplyLocalSearchOperation;
 	typedef std::vector<ApplyLocalSearchOperation> ApplyLocalSearch;
 
 public:
@@ -63,8 +63,8 @@ private:
     const Chromosome TS(const Chromosome &);
 
 	// Apply Local Search
-	const int applyLocalSearchByLamarckian(Chromosome &);
-	const int applyLocalSearchByBaldwinian(Chromosome &);
+	const int applyLocalSearchByLamarckian(Chromosome &, const int);
+	const int applyLocalSearchByBaldwinian(Chromosome &, const int);
 
     //void environmentSelect();
 

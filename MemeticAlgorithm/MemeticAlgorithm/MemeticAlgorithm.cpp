@@ -56,14 +56,14 @@ void MemeticAlgorithm::run()
         mutation_[i](this, population_[0]);
     }
 	std::cout << "=== Testing Localsearch ===" << std::endl;
-    for (std::size_t i = 2; i < localSearch_.size(); i += 1)
+    for (std::size_t i = 0; i < localSearch_.size(); i += 1)
     {
         localSearch_[i](this, population_[0]);
     }
 	std::cout << "=== Testing ApplyLocalsearch ===" << std::endl;
 	for (std::size_t i = 0; i < applyLocalSearch_.size(); i += 1)
 	{
-		applyLocalSearch_[i](this, population_[0]);
+		applyLocalSearch_[i](this, population_[0], 10);
 	}
 }
 
@@ -93,7 +93,7 @@ void MemeticAlgorithm::heuristicInitialize()
 	randomInitialize();
 	for (std::size_t i = 0; i < heuristic_solution_size; i += 1)
 	{
-		applyLocalSearch_[0](this, population_[i]); // II
+		localSearch_[0](this, population_[i]); // II
 	}
 }
 
@@ -203,7 +203,7 @@ const Chromosome MemeticAlgorithm::II(const Chromosome &chromosome)
 
 const Chromosome MemeticAlgorithm::SA(const Chromosome &chromosome)
 {
-    // Assign to Wei [Need fix]
+    // Assign to Wei [Done]
     Chromosome result(chromosome);
 	int best = fitness_(result), score;
     int looptimes = localsearch_looptimes_;
@@ -284,14 +284,14 @@ const Chromosome MemeticAlgorithm::TS(const Chromosome &chromosome)
 
 #pragma region ApplyLocalSearch
 
-const int MemeticAlgorithm::applyLocalSearchByLamarckian(Chromosome &chromosome)
+const int MemeticAlgorithm::applyLocalSearchByLamarckian(Chromosome &chromosome, const int type)
 {
 	// Implement the Lamarckian function
 	// Apply local search and update the chromosome, return updated fitness
 	return fitness_(chromosome);
 }
 
-const int MemeticAlgorithm::applyLocalSearchByBaldwinian(Chromosome &chromosome)
+const int MemeticAlgorithm::applyLocalSearchByBaldwinian(Chromosome &chromosome, const int type)
 {
 	// Implement the Baldwinian function
 	// Only apply local search, return updated fitness
