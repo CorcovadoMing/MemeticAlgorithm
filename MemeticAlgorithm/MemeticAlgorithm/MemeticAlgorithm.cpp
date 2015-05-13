@@ -41,27 +41,27 @@ MemeticAlgorithm::MemeticAlgorithm(const int population_size, const double cross
 
 void MemeticAlgorithm::run()
 {
-    std::cout << "=== Testing ===" << std::endl;
+    std::cout << "=== Testing Initialize ===" << std::endl;
     for (std::size_t i = 0; i < initialize_.size(); i += 1)
     {
         initialize_[i](this);
     }
-
+	std::cout << "=== Testing Crossover ===" << std::endl;
     for (std::size_t i = 0; i < crossover_.size(); i += 1)
     {
         crossover_[i](this, population_[0], population_[1]);
     }
-
+	std::cout << "=== Testing Mutation ===" << std::endl;
     for (std::size_t i = 0; i < mutation_.size(); i += 1)
     {
         mutation_[i](this, population_[0]);
     }
-
+	std::cout << "=== Testing Localsearch ===" << std::endl;
     for (std::size_t i = 2; i < localSearch_.size(); i += 1)
     {
-        localSearch_[1](this, population_[0]);
+        localSearch_[i](this, population_[0]);
     }
-
+	std::cout << "=== Testing ApplyLocalsearch ===" << std::endl;
 	for (std::size_t i = 0; i < applyLocalSearch_.size(); i += 1)
 	{
 		applyLocalSearch_[i](this, population_[0]);
@@ -89,7 +89,13 @@ void MemeticAlgorithm::randomInitialize()
 
 void MemeticAlgorithm::heuristicInitialize()
 {
-    // Assign to Ming rf37535@gmail.com
+    // Assign to Ming rf37535@gmail.com [Done]
+	const int heuristic_solution_size = population_size_ / 10;
+	randomInitialize();
+	for (std::size_t i = 0; i < heuristic_solution_size; i += 1)
+	{
+		applyLocalSearch_[0](this, population_[i]); // II
+	}
 }
 
 #pragma endregion
