@@ -108,7 +108,7 @@ void MemeticAlgorithm::OX(const Chromosome &first_parent, const Chromosome &seco
 
 void MemeticAlgorithm::LOX(const Chromosome &first_parent, const Chromosome &second_parent)
 {
-    // TODO: Implement LOX to first_parent and second_parent
+	std::cout << "LOX" << std::endl;
     std::size_t chromosome_size = first_parent.size();
 	std::size_t inherit_index = RandomRange::random<int>(0, chromosome_size - 2);
 	std::size_t inherit_length = RandomRange::random<int>(inherit_index, chromosome_size - 1) - inherit_index;
@@ -162,7 +162,30 @@ void MemeticAlgorithm::PMX(const Chromosome &first_parent, const Chromosome &sec
 
 void MemeticAlgorithm::CX(const Chromosome &first_parent, const Chromosome &second_parent)
 {
-    // TODO: Implement CX to first_parent and second_parent
+	std::cout << "CX" << std::endl;
+	Chromosome first_child(first_parent);
+	Chromosome second_child(second_parent);
+	std::size_t check_point = RandomRange::random<int>(0, first_parent.size() - 1);
+	std::vector<std::size_t> exchange_element;
+	const int start_element = first_parent[check_point];
+	while (second_parent[check_point] != start_element)
+	{
+		exchange_element.push_back(check_point);
+		for (std::size_t i = 0; i < first_parent.size(); i += 1)
+		{
+			if (first_parent[i] == second_parent[check_point])
+			{
+				check_point = i;
+				break;
+			}
+		}
+	}
+	for (std::size_t i = 0; i < exchange_element.size(); i += 1)
+	{
+		std::swap(first_child[exchange_element[i]], second_child[exchange_element[i]]);
+	}
+	offspring_.push_back(first_child);
+	offspring_.push_back(second_child);
 }
 
 #pragma endregion
