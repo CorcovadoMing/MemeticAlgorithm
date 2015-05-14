@@ -111,7 +111,7 @@ void MemeticAlgorithm::LOX(const Chromosome &first_parent, const Chromosome &sec
 	std::cout << "LOX" << std::endl;
     std::size_t chromosome_size = first_parent.size();
 	std::size_t inherit_index = RandomRange::random<int>(0, chromosome_size - 2);
-	std::size_t inherit_length = RandomRange::random<int>(inherit_index, chromosome_size - 1) - inherit_index;
+	std::size_t inherit_length = RandomRange::random<int>(inherit_index + 1, chromosome_size - 1) - inherit_index; // bug fix, inherit_length at least has value 1.
 
     Chromosome first_temp  = second_parent, first_child;
     Chromosome second_temp = first_parent, second_child;
