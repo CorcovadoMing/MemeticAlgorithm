@@ -56,6 +56,9 @@ private:
 	void CX(const Chromosome &, const Chromosome &);
 
     // Mutation
+	void insertion(Chromosome &);
+	void swap(Chromosome &);
+	void inverse(Chromosome &);
 
     // Local Search
     const Chromosome II(const Chromosome &);

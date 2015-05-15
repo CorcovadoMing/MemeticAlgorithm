@@ -191,6 +191,22 @@ void MemeticAlgorithm::CX(const Chromosome &first_parent, const Chromosome &seco
 #pragma endregion
 
 #pragma region Mutation
+
+void MemeticAlgorithm::insertion(Chromosome &chromosome)
+{
+
+}
+
+void MemeticAlgorithm::swap(Chromosome &chromosome)
+{
+
+}
+
+void MemeticAlgorithm::inverse(Chromosome &chromosome)
+{
+
+}
+
 #pragma endregion
 
 #pragma region LocalSearch
