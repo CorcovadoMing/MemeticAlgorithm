@@ -101,6 +101,15 @@ void MemeticAlgorithm::heuristicInitialize()
 
 #pragma endregion
 
+#pragma region Mating-Selection
+
+void MemeticAlgorithm::tournament()
+{
+
+}
+
+#pragma endregion
+
 #pragma region Crossover
 
 void MemeticAlgorithm::OX(const Chromosome &first_parent, const Chromosome &second_parent)
@@ -201,10 +210,19 @@ void MemeticAlgorithm::insertion(Chromosome &chromosome)
 
 void MemeticAlgorithm::swap(Chromosome &chromosome)
 {
-
+	
 }
 
 void MemeticAlgorithm::inverse(Chromosome &chromosome)
+{
+
+}
+
+#pragma endregion
+
+#pragma region Environment-Selection
+
+void MemeticAlgorithm::tophalf()
 {
 
 }

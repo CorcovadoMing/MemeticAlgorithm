@@ -30,7 +30,7 @@ public:
     void run();
 
 private:
-    Population population_, offspring_;
+    Population population_, offspring_, parent_;
     Matrix matrix_;
     Initialize initialize_;
     Crossover crossover_;
@@ -47,7 +47,7 @@ private:
     void heuristicInitialize();
 
     // Mating Selection
-    //void matingSelect();
+	void tournament();
 
     // Crossover
 	void OX(const Chromosome &, const Chromosome &);
@@ -70,6 +70,7 @@ private:
 	const int applyLocalSearchByBaldwinian(Chromosome &, const int);
 
     //void environmentSelect();
+	void tophalf();
 
     const double crossover_rate_;
     const double mutation_rate_;
