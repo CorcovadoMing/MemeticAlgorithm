@@ -309,16 +309,13 @@ const Chromosome MemeticAlgorithm::TS(const Chromosome &chromosome)
 
 const int MemeticAlgorithm::applyLocalSearchByLamarckian(Chromosome &chromosome, const int type)
 {
-	// Implement the Lamarckian function
-	// Apply local search and update the chromosome, return updated fitness
+	chromosome = localSearch_[type](this, chromosome);
 	return fitness_(chromosome);
 }
 
 const int MemeticAlgorithm::applyLocalSearchByBaldwinian(Chromosome &chromosome, const int type)
 {
-	// Implement the Baldwinian function
-	// Only apply local search, return updated fitness
-	return fitness_(chromosome);
+	return fitness_(localSearch_[type](this, chromosome));
 }
 
 #pragma endregion
