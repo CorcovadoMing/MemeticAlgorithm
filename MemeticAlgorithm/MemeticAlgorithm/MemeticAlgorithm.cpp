@@ -24,7 +24,9 @@ MemeticAlgorithm::MemeticAlgorithm(const int population_size, const double cross
     crossover_.push_back(std::mem_fn(&MemeticAlgorithm::PMX));
     crossover_.push_back(std::mem_fn(&MemeticAlgorithm::CX));
 
-    //mutation_
+	mutation_.push_back(std::mem_fn(&MemeticAlgorithm::insertion));
+	mutation_.push_back(std::mem_fn(&MemeticAlgorithm::swap));
+	mutation_.push_back(std::mem_fn(&MemeticAlgorithm::inverse));
 
 	localSearch_.push_back(std::mem_fn(&MemeticAlgorithm::II));
 	localSearch_.push_back(std::mem_fn(&MemeticAlgorithm::SA));
@@ -63,7 +65,7 @@ void MemeticAlgorithm::run()
 	std::cout << "=== Testing ApplyLocalsearch ===" << std::endl;
 	for (std::size_t i = 0; i < applyLocalSearch_.size(); i += 1)
 	{
-		applyLocalSearch_[i](this, population_[0], 10);
+		applyLocalSearch_[i](this, population_[0], 0);
 	}
 }
 
