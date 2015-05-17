@@ -114,7 +114,54 @@ void MemeticAlgorithm::tournament()
 
 void MemeticAlgorithm::OX(const Chromosome &first_parent, const Chromosome &second_parent)
 {
-    // TODO: Implement OX to first_parent and second_parent
+    std::cout << "OX" << std::endl;
+    std::size_t chromosome_size = first_parent.size();
+	std::size_t inherit_index = RandomRange::random<int>(0, chromosome_size - 2);
+	cout << "inherit_index = " << inherit_index << endl;
+	std::size_t inherit_length = RandomRange::random<int>(inherit_index + 1, chromosome_size - 1) - inherit_index;
+    cout << "inherit_length = " << inherit_length << endl;
+
+    //first_child inherit first_parent, and other is second_parent, use first_temp
+    Chromosome first_temp(second_parent), first_child(first_parent);
+    //second_child inherit second_parent, and other is first_parent, use second_temp
+    Chromosome second_temp(first_parent), second_child(second_parent);
+
+    //mark which had been inherited
+    for(std::size_t i = 0; i < chromosome_size; i += 1)
+    {
+        for(std::size_t j = 0; j < inherit_length; j += 1)
+        {
+            if(first_temp[i] == first_parent[inherit_index+j])
+            {
+                first_temp[i] = -1;
+            }
+            if(second_temp[i] == second_parent[inherit_index+j])
+            {
+                second_temp[i] = -1;
+            }
+        }
+    }
+
+    //add temp to child
+    for(std::size_t i = inherit_index + inherit_length, first_addindex = 0, second_addindex = 0; i < chromosome_size + inherit_index; i += 1)
+    {
+        while(first_temp[first_addindex] == -1 && first_addindex < chromosome_size)
+        {
+            first_addindex += 1;
+        }
+        while(second_temp[second_addindex] == -1 && second_addindex < chromosome_size)
+        {
+            second_addindex += 1;
+        }
+
+        first_child[i % chromosome_size] = first_temp[first_addindex];
+        second_child[i % chromosome_size] = second_temp[second_addindex];
+
+        first_addindex += 1;
+        second_addindex += 1;
+    }
+	offspring_.push_back(first_child);
+	offspring_.push_back(second_child);
 }
 
 void MemeticAlgorithm::LOX(const Chromosome &first_parent, const Chromosome &second_parent)
