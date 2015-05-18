@@ -117,9 +117,9 @@ void MemeticAlgorithm::OX(const Chromosome &first_parent, const Chromosome &seco
     std::cout << "OX" << std::endl;
     std::size_t chromosome_size = first_parent.size();
 	std::size_t inherit_index = RandomRange::random<int>(0, chromosome_size - 2);
-	cout << "inherit_index = " << inherit_index << endl;
+//	cout << "inherit_index = " << inherit_index << endl;
 	std::size_t inherit_length = RandomRange::random<int>(inherit_index + 1, chromosome_size - 1) - inherit_index;
-    cout << "inherit_length = " << inherit_length << endl;
+//  cout << "inherit_length = " << inherit_length << endl;
 
     //first_child inherit first_parent, and other is second_parent, use first_temp
     Chromosome first_temp(second_parent), first_child(first_parent);
@@ -171,42 +171,39 @@ void MemeticAlgorithm::LOX(const Chromosome &first_parent, const Chromosome &sec
 	std::size_t inherit_index = RandomRange::random<int>(0, chromosome_size - 2);
 	std::size_t inherit_length = RandomRange::random<int>(inherit_index + 1, chromosome_size - 1) - inherit_index; // bug fix, inherit_length at least has value 1.
 
-    Chromosome first_temp(second_parent), first_child;
-    Chromosome second_temp(first_parent), second_child;
-    for(std::size_t i = 0; i < chromosome_size; i += 1)
+    Chromosome first_temp(second_parent), first_child(first_parent);
+    Chromosome second_temp(first_parent), second_child(second_parent);
+    for (std::size_t i = 0; i < chromosome_size; i += 1)
     {
-        for(std::size_t j = 0; j < inherit_length; j += 1)
+        for (std::size_t j = 0; j < inherit_length; j += 1)
         {
-            if(first_temp[i] == first_parent[inherit_index+j])
+            if (first_temp[i] == first_parent[inherit_index+j])
             {
                 first_temp[i] = -1;
             }
-            if(second_temp[i] == second_parent[inherit_index+j])
+            if (second_temp[i] == second_parent[inherit_index+j])
             {
                 second_temp[i] = -1;
             }
         }
     }
-    for(std::size_t i = 0, k = 0; i < chromosome_size; i += 1)
+
+    for (std::size_t i = 0, k1 = 0, k2 = 0; i < chromosome_size; i += 1)
     {
-        if(i == inherit_index)
+        if (i == inherit_index)
         {
-            for(std::size_t j = 0; j < inherit_length; j += 1)
-            {
-                first_child.push_back(first_parent[inherit_index+j]);
-                second_child.push_back(second_parent[inherit_index+j]);
-            }
             i += (inherit_length - 1);
         }
         else
         {
-            while(first_temp[k] == -1 && k < chromosome_size)
-            {
-                k += 1;
+            while(first_temp[k1]  == -1 && k1 < chromosome_size) {
+                k1 += 1;
             }
-            first_child.push_back(first_temp[k]);
-            second_child.push_back(second_temp[k]);
-            k += 1;
+            while(second_temp[k2] == -1 && k2 < chromosome_size) {
+                k2 += 1;
+            }
+            first_child[i]  = first_temp[k1];  k1 += 1;
+            second_child[i] = second_temp[k2]; k2 += 1;
         }
     }
 	offspring_.push_back(first_child);
@@ -215,28 +212,32 @@ void MemeticAlgorithm::LOX(const Chromosome &first_parent, const Chromosome &sec
 
 void MemeticAlgorithm::PMX(const Chromosome &first_parent, const Chromosome &second_parent)
 {
-    // TODO: Implement PMX to first_parent and second_parent
-//    std::size_t chromosome_size = first_parent.size();
-//	std::size_t inherit_index  = RandomRange::random<int>(0, chromosome_size - 2);
-//	std::size_t inherit_length = RandomRange::random<int>(inherit_index + 1, chromosome_size - 1) - inherit_index;
-//
-//    Chromosome first_temp(chromosome_size, 0) , first_child(first_parent);
-//    Chromosome second_temp(chromosome_size, 0), second_child(second_parent);
-//    for (std::size_t i = 0; i < chromosome_size; i += 1)
-//    {
-//        first_temp[first_parent[i]] = i;
-//        second_temp[second_parent[i]] = i;
-//    }
-//    for (std::size_t i = inherit_index; i < inherit_length; i += 1)
-//    {
-//        if(first_child[i] != second_child[i])
-//        {
-//            std::swap(first_child[i], first_child[first_temp[second_child[i]]]);
-//            std::swap(second_child[i], second_child[second_temp[first_child[i]]]);
-//        }
-//    }
-//    offspring_.push_back(first_child);
-//	offspring_.push_back(second_child);
+    std::cout << "PMX" << std::endl;
+    std::size_t chromosome_size = first_parent.size();
+	std::size_t inherit_index  = RandomRange::random<int>(0, chromosome_size - 2);
+	std::size_t inherit_length = RandomRange::random<int>(inherit_index + 1, chromosome_size - 1) - inherit_index;
+
+    Chromosome first_child(first_parent);
+    Chromosome second_child(second_parent);
+    for (std::size_t i = inherit_index; i < inherit_length + inherit_index; i += 1)
+    {
+        if (first_parent[i] != second_parent[i])
+        {
+            for (std::size_t j = 0; j < chromosome_size; j += 1)
+            {
+                if (first_child[j] == second_parent[i])
+                {
+                    std::swap(first_child[i], first_child[j]);
+                }
+                if (second_child[j] == first_parent[i])
+                {
+                    std::swap(second_child[i], second_child[j]);
+                }
+            }
+        }
+    }
+    offspring_.push_back(first_child);
+	offspring_.push_back(second_child);
 }
 
 void MemeticAlgorithm::CX(const Chromosome &first_parent, const Chromosome &second_parent)
