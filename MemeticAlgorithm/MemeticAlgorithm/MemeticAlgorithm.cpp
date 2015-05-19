@@ -289,7 +289,12 @@ void MemeticAlgorithm::swap(Chromosome &chromosome)
 
 void MemeticAlgorithm::inverse(Chromosome &chromosome)
 {
-
+    std::size_t start = RandomRange::random<int>(0, chromosome.size() - 2);
+    std::size_t range = RandomRange::random<int>(2, chromosome.size() - start);
+    for(int i = 0; i < range / 2; i += 1)
+    {
+        std::swap(chromosome[start + i], chromosome[start + range - 1 - i]);
+    }
 }
 
 #pragma endregion
