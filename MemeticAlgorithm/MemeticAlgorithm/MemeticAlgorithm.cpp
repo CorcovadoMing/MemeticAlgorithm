@@ -166,10 +166,10 @@ void MemeticAlgorithm::OX(const Chromosome &first_parent, const Chromosome &seco
 
 void MemeticAlgorithm::LOX(const Chromosome &first_parent, const Chromosome &second_parent)
 {
-	std::cout << "LOX" << std::endl;
+    std::cout << "LOX" << std::endl;
     std::size_t chromosome_size = first_parent.size();
-	std::size_t inherit_index = RandomRange::random<int>(0, chromosome_size - 2);
-	std::size_t inherit_length = RandomRange::random<int>(inherit_index + 1, chromosome_size - 1) - inherit_index; // bug fix, inherit_length at least has value 1.
+    std::size_t inherit_index = RandomRange::random<int>(0, chromosome_size - 2);
+    std::size_t inherit_length = RandomRange::random<int>(inherit_index + 1, chromosome_size - 1) - inherit_index; // bug fix, inherit_length at least has value 1.
 
     Chromosome first_temp(second_parent), first_child(first_parent);
     Chromosome second_temp(first_parent), second_child(second_parent);
@@ -196,26 +196,26 @@ void MemeticAlgorithm::LOX(const Chromosome &first_parent, const Chromosome &sec
         }
         else
         {
-            while(first_temp[k1]  == -1 && k1 < chromosome_size) {
+            while (first_temp[k1]  == -1 && k1 < chromosome_size) {
                 k1 += 1;
             }
-            while(second_temp[k2] == -1 && k2 < chromosome_size) {
+            while (second_temp[k2] == -1 && k2 < chromosome_size) {
                 k2 += 1;
             }
-            first_child[i]  = first_temp[k1];  k1 += 1;
-            second_child[i] = second_temp[k2]; k2 += 1;
+            first_child[i]  = first_temp[k1];  if (k1 < chromosome_size) { k1 += 1; }
+            second_child[i] = second_temp[k2]; if (k2 < chromosome_size) { k2 += 1; }
         }
     }
-	offspring_.push_back(first_child);
-	offspring_.push_back(second_child);
+    offspring_.push_back(first_child);
+    offspring_.push_back(second_child);
 }
 
 void MemeticAlgorithm::PMX(const Chromosome &first_parent, const Chromosome &second_parent)
 {
     std::cout << "PMX" << std::endl;
     std::size_t chromosome_size = first_parent.size();
-	std::size_t inherit_index  = RandomRange::random<int>(0, chromosome_size - 2);
-	std::size_t inherit_length = RandomRange::random<int>(inherit_index + 1, chromosome_size - 1) - inherit_index;
+    std::size_t inherit_index  = RandomRange::random<int>(0, chromosome_size - 2);
+    std::size_t inherit_length = RandomRange::random<int>(inherit_index + 1, chromosome_size - 1) - inherit_index;
 
     Chromosome first_child(first_parent);
     Chromosome second_child(second_parent);
@@ -279,7 +279,12 @@ void MemeticAlgorithm::insertion(Chromosome &chromosome)
 
 void MemeticAlgorithm::swap(Chromosome &chromosome)
 {
-
+    std::size_t a = RandomRange::random<int>(0, chromosome.size() - 1);
+    std::size_t b = RandomRange::random<int>(0, chromosome.size() - 1);
+    while (a == b) {
+        b = RandomRange::random<int>(0, chromosome.size() - 1);
+    }
+    std::swap(chromosome[a], chromosome[b]);
 }
 
 void MemeticAlgorithm::inverse(Chromosome &chromosome)
