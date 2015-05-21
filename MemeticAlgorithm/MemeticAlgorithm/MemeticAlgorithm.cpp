@@ -331,6 +331,21 @@ void MemeticAlgorithm::tophalf()
 
 }
 
+void MemeticAlgorithm::generationModel()
+{
+	if (offspring_.size() != population_size_)
+	{
+		std::cout << "[Error] offsping size != population size." << std::endl;
+	}
+	else
+	{
+		for (std::size_t i = 0; i < population_size_; i += 1)
+		{
+			population_[i] = offspring_[i];
+		}
+	}
+}
+
 #pragma endregion
 
 #pragma region LocalSearch

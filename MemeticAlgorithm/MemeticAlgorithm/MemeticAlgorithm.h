@@ -71,6 +71,7 @@ private:
 
     //void environmentSelect();
 	void tophalf();
+	void generationModel();
 
     const double crossover_rate_;
     const double mutation_rate_;
