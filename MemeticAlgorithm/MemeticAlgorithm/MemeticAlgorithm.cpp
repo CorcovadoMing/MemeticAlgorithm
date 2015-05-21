@@ -35,7 +35,7 @@ MemeticAlgorithm::MemeticAlgorithm(const int population_size, const double mutat
 	applyLocalSearch_.push_back(std::mem_fn(&MemeticAlgorithm::applyLocalSearchByLamarckian));
 	applyLocalSearch_.push_back(std::mem_fn(&MemeticAlgorithm::applyLocalSearchByBaldwinian));
 
-	parent_ = std::vector<std::size_t>(population_size_ / 2, 0);
+	parent_ = std::vector<std::size_t>(population_size_, 0);
 	fitness_table_ = std::vector<int>(population_size_, 0);
 }
 
@@ -45,18 +45,33 @@ MemeticAlgorithm::MemeticAlgorithm(const int population_size, const double mutat
 
 void MemeticAlgorithm::run()
 {
+	int generation = 100;
+	initialize_[0](this);
+	while (generation -= 1)
+	{
+		tournament();
+		for (std::size_t i = 0; i < parent_.size(); i += 2)
+		{
+			crossover_[0](this, population_[parent_[i]], population_[parent_[i + 1]]);
+		}
+		for (std::size_t i = 0; i < offspring_.size(); i += 1)
+		{
+			if (RandomRange::random<double>(0, 1) < mutation_rate_)
+			{
+				mutation_[0](this, offspring_[i]);
+			}
+		}
 
+		generationModel();
+		offspring_.clear();
 
+		for (std::size_t i = 0; i < 10; i += 1)
+		{
+			applyLocalSearch_[0](this, population_[i], 2);
+		}
 
-
-
-
-
-
-
-
-
-
+		std::cout << best_fitness_ << std::endl;
+	}
 
 	/*
     std::cout << "=== Testing Initialize ===" << std::endl;
@@ -126,6 +141,12 @@ void MemeticAlgorithm::tournament()
 	for (std::size_t i = 0; i < fitness_table_.size(); i += 1)
 	{
 		fitness_table_[i] = fitness_(population_[i]);
+	}
+
+	int current_min = *std::min_element(fitness_table_.begin(), fitness_table_.end());
+	if (current_min < best_fitness_)
+	{
+		best_fitness_ = current_min;
 	}
 
 	for (std::size_t i = 0; i < parent_.size(); i += 1)
@@ -351,6 +372,7 @@ void MemeticAlgorithm::generationModel()
 	if (offspring_.size() != population_size_)
 	{
 		std::cout << "[Error] offsping size != population size." << std::endl;
+		std::cout << offspring_.size() << " " << population_size_ << std::endl;
 	}
 	else
 	{

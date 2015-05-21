@@ -3,6 +3,7 @@
 #include <vector>
 #include <string>
 #include <functional>
+#include <climits>
 
 typedef std::vector<int> Chromosome;
 typedef std::vector<Chromosome> Population;
@@ -82,5 +83,7 @@ private:
 
 	std::vector<std::size_t> parent_;
 	std::vector<int> fitness_table_;
+
+	int best_fitness_ = INT_MAX;
 };
 
