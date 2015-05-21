@@ -67,7 +67,7 @@ void MemeticAlgorithm::run()
 
 		for (std::size_t i = 0; i < 10; i += 1)
 		{
-			applyLocalSearch_[0](this, population_[i], 2);
+			applyLocalSearch_[0](this, population_[i], 0);
 		}
 
 		std::cout << best_fitness_ << std::endl;
@@ -196,7 +196,7 @@ void MemeticAlgorithm::LOX(const Chromosome &first_parent, const Chromosome &sec
 {
     std::size_t chromosome_size = first_parent.size();
     std::size_t inherit_index = RandomRange::random<int>(0, chromosome_size - 2);
-    std::size_t inherit_length = RandomRange::random<int>(inherit_index + 1, chromosome_size - 1) - inherit_index; 
+    std::size_t inherit_length = RandomRange::random<int>(inherit_index + 1, chromosome_size - 1) - inherit_index;
     Chromosome first_temp(second_parent), first_child(first_parent);
     Chromosome second_temp(first_parent), second_child(second_parent);
     for (std::size_t i = 0; i < chromosome_size; i += 1)
@@ -313,7 +313,7 @@ void MemeticAlgorithm::swap(Chromosome &chromosome)
 {
     std::size_t a = RandomRange::random<int>(0, chromosome.size() - 1);
     std::size_t b = RandomRange::random<int>(0, chromosome.size() - 1);
-    while (a == b) 
+    while (a == b)
 	{
         b = RandomRange::random<int>(0, chromosome.size() - 1);
     }
@@ -364,22 +364,24 @@ const Chromosome MemeticAlgorithm::II(const Chromosome &chromosome)
     Chromosome result(chromosome);
     int best = fitness_(result);
     int looptimes = localsearch_looptimes_;
+    bool isFound;
     while (looptimes -= 1)
     {
-        for (std::size_t i = 0; i < jobs_ - 1; i += 1)
+        isFound = false;
+        for (std::size_t i = 0; i < jobs_ - 1 && !isFound; i += 1)
         {
-            for (std::size_t j = i + 1; j < jobs_; j += 1)
+            for (std::size_t j = i + 1; j < jobs_ && !isFound; j += 1)
             {
                 std::swap(result[i], result[j]);
 				int score = fitness_(result);
-                if (best > score)
+                if (score < best)
                 {
                     best = score;
-                    return result;
+                    isFound = true;
                 }
                 else
                 {
-                    std::swap(result[j], result[i]);
+                    std::swap(result[i], result[j]);
                 }
             }
         }
