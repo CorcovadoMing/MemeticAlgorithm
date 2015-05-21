@@ -50,12 +50,12 @@ void MemeticAlgorithm::run()
 	std::cout << "=== Testing Crossover ===" << std::endl;
     for (std::size_t i = 0; i < crossover_.size(); i += 1)
     {
-        crossover_[i](this, population_[0], population_[1]);
+		crossover_[i](this, population_[0], population_[1]);
     }
 	std::cout << "=== Testing Mutation ===" << std::endl;
     for (std::size_t i = 0; i < mutation_.size(); i += 1)
     {
-        mutation_[i](this, population_[0]);
+		mutation_[i](this, population_[0]);
     }
 	std::cout << "=== Testing Localsearch ===" << std::endl;
     for (std::size_t i = 0; i < localSearch_.size(); i += 1)
@@ -166,11 +166,9 @@ void MemeticAlgorithm::OX(const Chromosome &first_parent, const Chromosome &seco
 
 void MemeticAlgorithm::LOX(const Chromosome &first_parent, const Chromosome &second_parent)
 {
-    std::cout << "LOX" << std::endl;
     std::size_t chromosome_size = first_parent.size();
     std::size_t inherit_index = RandomRange::random<int>(0, chromosome_size - 2);
-    std::size_t inherit_length = RandomRange::random<int>(inherit_index + 1, chromosome_size - 1) - inherit_index; // bug fix, inherit_length at least has value 1.
-
+    std::size_t inherit_length = RandomRange::random<int>(inherit_index + 1, chromosome_size - 1) - inherit_index; 
     Chromosome first_temp(second_parent), first_child(first_parent);
     Chromosome second_temp(first_parent), second_child(second_parent);
     for (std::size_t i = 0; i < chromosome_size; i += 1)
@@ -212,7 +210,6 @@ void MemeticAlgorithm::LOX(const Chromosome &first_parent, const Chromosome &sec
 
 void MemeticAlgorithm::PMX(const Chromosome &first_parent, const Chromosome &second_parent)
 {
-    std::cout << "PMX" << std::endl;
     std::size_t chromosome_size = first_parent.size();
     std::size_t inherit_index  = RandomRange::random<int>(0, chromosome_size - 2);
     std::size_t inherit_length = RandomRange::random<int>(inherit_index + 1, chromosome_size - 1) - inherit_index;
@@ -242,7 +239,6 @@ void MemeticAlgorithm::PMX(const Chromosome &first_parent, const Chromosome &sec
 
 void MemeticAlgorithm::CX(const Chromosome &first_parent, const Chromosome &second_parent)
 {
-	std::cout << "CX" << std::endl;
 	Chromosome first_child(first_parent);
 	Chromosome second_child(second_parent);
 	std::size_t check_point = RandomRange::random<int>(0, first_parent.size() - 1);
@@ -274,14 +270,23 @@ void MemeticAlgorithm::CX(const Chromosome &first_parent, const Chromosome &seco
 
 void MemeticAlgorithm::insertion(Chromosome &chromosome)
 {
+	const std::size_t point = RandomRange::random<int>(1, chromosome.size() - 1);
+	const std::size_t insert = RandomRange::random<int>(0, point - 1);
 
+	std::size_t i = point;
+	while (i != insert)
+	{
+		std::swap(chromosome[i], chromosome[i - 1]);
+		i -= 1;
+	}
 }
 
 void MemeticAlgorithm::swap(Chromosome &chromosome)
 {
     std::size_t a = RandomRange::random<int>(0, chromosome.size() - 1);
     std::size_t b = RandomRange::random<int>(0, chromosome.size() - 1);
-    while (a == b) {
+    while (a == b) 
+	{
         b = RandomRange::random<int>(0, chromosome.size() - 1);
     }
     std::swap(chromosome[a], chromosome[b]);
@@ -312,7 +317,6 @@ void MemeticAlgorithm::tophalf()
 
 const Chromosome MemeticAlgorithm::II(const Chromosome &chromosome)
 {
-    // Assign to Shin bazukaoc@gmail.com [Done]
     Chromosome result(chromosome);
     int best = fitness_(result);
     int looptimes = localsearch_looptimes_;
@@ -341,7 +345,6 @@ const Chromosome MemeticAlgorithm::II(const Chromosome &chromosome)
 
 const Chromosome MemeticAlgorithm::SA(const Chromosome &chromosome)
 {
-    // Assign to Wei [Done]
     Chromosome result(chromosome);
 	int best = fitness_(result), score;
     int looptimes = localsearch_looptimes_;
@@ -375,7 +378,6 @@ const Chromosome MemeticAlgorithm::SA(const Chromosome &chromosome)
 
 const Chromosome MemeticAlgorithm::TS(const Chromosome &chromosome)
 {
-	// Assign to Ming rf37535@gmail.com [Done]
 	const int tabu_length = 7;
 	int tabu_current = 0;
 	std::vector<int> tabulist(tabu_length, 0);
