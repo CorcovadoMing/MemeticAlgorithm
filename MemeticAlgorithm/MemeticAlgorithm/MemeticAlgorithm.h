@@ -26,7 +26,7 @@ class MemeticAlgorithm
 	typedef std::vector<ApplyLocalSearchOperation> ApplyLocalSearch;
 
 public:
-    MemeticAlgorithm(const int, const double, const double, const int, const std::string &);
+    MemeticAlgorithm(const int, const double, const int, const std::string &);
     void run();
 
 private:
@@ -73,7 +73,6 @@ private:
 	void tophalf();
 	void generationModel();
 
-    const double crossover_rate_;
     const double mutation_rate_;
     const int population_size_;
     const int localsearch_looptimes_;

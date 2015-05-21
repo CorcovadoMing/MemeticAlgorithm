@@ -6,8 +6,8 @@
 
 #pragma region Constructor
 
-MemeticAlgorithm::MemeticAlgorithm(const int population_size, const double crossover_rate, const double mutation_rate, const int localsearch_looptimes, const std::string& filename)
-    : population_size_(population_size), crossover_rate_(crossover_rate), mutation_rate_(mutation_rate), localsearch_looptimes_(localsearch_looptimes), filename_(filename)
+MemeticAlgorithm::MemeticAlgorithm(const int population_size, const double mutation_rate, const int localsearch_looptimes, const std::string& filename)
+    : population_size_(population_size), mutation_rate_(mutation_rate), localsearch_looptimes_(localsearch_looptimes), filename_(filename)
 {
     readfile_();
     if (jobs_ == 0 || machines_ == 0)
@@ -45,6 +45,20 @@ MemeticAlgorithm::MemeticAlgorithm(const int population_size, const double cross
 
 void MemeticAlgorithm::run()
 {
+
+
+
+
+
+
+
+
+
+
+
+
+
+	/*
     std::cout << "=== Testing Initialize ===" << std::endl;
     for (std::size_t i = 0; i < initialize_.size(); i += 1)
     {
@@ -70,6 +84,7 @@ void MemeticAlgorithm::run()
 	{
 		applyLocalSearch_[i](this, population_[0], 0);
 	}
+	*/
 }
 
 #pragma endregion
