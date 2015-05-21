@@ -30,7 +30,7 @@ public:
     void run();
 
 private:
-    Population population_, offspring_, parent_;
+	Population population_, offspring_;
     Matrix matrix_;
     Initialize initialize_;
     Crossover crossover_;
@@ -79,5 +79,8 @@ private:
     const std::string filename_;
     unsigned jobs_ = 0;
     unsigned machines_ = 0;
+
+	std::vector<std::size_t> parent_;
+	std::vector<int> fitness_table_;
 };
 

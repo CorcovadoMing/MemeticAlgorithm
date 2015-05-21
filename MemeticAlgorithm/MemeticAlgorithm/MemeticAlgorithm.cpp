@@ -34,6 +34,9 @@ MemeticAlgorithm::MemeticAlgorithm(const int population_size, const double cross
 
 	applyLocalSearch_.push_back(std::mem_fn(&MemeticAlgorithm::applyLocalSearchByLamarckian));
 	applyLocalSearch_.push_back(std::mem_fn(&MemeticAlgorithm::applyLocalSearchByBaldwinian));
+
+	parent_ = std::vector<std::size_t>(population_size_ / 2, 0);
+	fitness_table_ = std::vector<int>(population_size_, 0);
 }
 
 #pragma endregion
@@ -105,7 +108,25 @@ void MemeticAlgorithm::heuristicInitialize()
 
 void MemeticAlgorithm::tournament()
 {
+	for (std::size_t i = 0; i < fitness_table_.size(); i += 1)
+	{
+		fitness_table_[i] = fitness_(population_[i]);
+	}
 
+	for (std::size_t i = 0; i < parent_.size(); i += 1)
+	{
+		const std::size_t first = RandomRange::random<int>(0, population_size_ - 1);
+		const std::size_t second = RandomRange::random<int>(0, population_size_ - 1);
+
+		if (fitness_table_[first] < fitness_table_[second])
+		{
+			parent_[i] = first;
+		}
+		else
+		{
+			parent_[i] = second;
+		}
+	}
 }
 
 #pragma endregion
@@ -114,7 +135,6 @@ void MemeticAlgorithm::tournament()
 
 void MemeticAlgorithm::OX(const Chromosome &first_parent, const Chromosome &second_parent)
 {
-    std::cout << "OX" << std::endl;
     std::size_t chromosome_size = first_parent.size();
 	std::size_t inherit_index = RandomRange::random<int>(0, chromosome_size - 2);
 //	cout << "inherit_index = " << inherit_index << endl;
