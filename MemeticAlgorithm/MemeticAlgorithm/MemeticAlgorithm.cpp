@@ -67,7 +67,7 @@ void MemeticAlgorithm::run()
 
 		for (std::size_t i = 0; i < 10; i += 1)
 		{
-			applyLocalSearch_[0](this, population_[i], 0);
+			applyLocalSearch_[0](this, population_[i], 1);
 		}
 
 		std::cout << best_fitness_ << std::endl;
@@ -394,20 +394,30 @@ const Chromosome MemeticAlgorithm::SA(const Chromosome &chromosome)
     Chromosome result(chromosome);
 	int best = fitness_(result), score;
     int looptimes = localsearch_looptimes_;
-    double temperature = 2000;
+    double temperature = 60;
     int changefirst, changesecond;
-    while (looptimes -= 1 && temperature >= 1)
+    ///
+    int number = 0;
+    ///
+    while (looptimes -= 1 && temperature > 0.25)
     {
+        ///
+        number += 1;
+        ///
         changefirst = RandomRange::random<int>(0, jobs_ - 1);
         changesecond = RandomRange::random<int>(0, jobs_ - 1);
         std::swap(result[changefirst], result[changesecond]);
         score = fitness_(result);
+        ///
+        //std::cout << score << " ";
+        ///
         if (best > score)
         {
             best = score;
         }
         else
         {
+            //std::cout << "exp = " << exp((best - score) / temperature) << std::endl;
             if(RandomRange::random<double>(0, 1) < exp((best - score) / temperature))
             {
                 best = score;
@@ -417,8 +427,12 @@ const Chromosome MemeticAlgorithm::SA(const Chromosome &chromosome)
                 std::swap(result[changefirst], result[changesecond]);
             }
         }
-        temperature *= 0.99;
+        temperature *= 0.9;
     }
+    ///
+    std::cout << "number = " << number << " " << temperature << std::endl;
+    std::cin.get();
+    ///
     return result;
 }
 
