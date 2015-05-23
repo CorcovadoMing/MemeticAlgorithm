@@ -394,9 +394,9 @@ const Chromosome MemeticAlgorithm::SA(const Chromosome &chromosome)
     Chromosome result(chromosome);
 	int best = fitness_(result), score;
     int looptimes = localsearch_looptimes_;
-    double temperature = 2000;
+    double temperature = 60;
     int changefirst, changesecond;
-    while (looptimes -= 1 && temperature >= 1)
+    while (looptimes -= 1 && temperature > 0.3)
     {
         changefirst = RandomRange::random<int>(0, jobs_ - 1);
         changesecond = RandomRange::random<int>(0, jobs_ - 1);
@@ -417,7 +417,7 @@ const Chromosome MemeticAlgorithm::SA(const Chromosome &chromosome)
                 std::swap(result[changefirst], result[changesecond]);
             }
         }
-        temperature *= 0.99;
+        temperature *= 0.9;
     }
     return result;
 }
