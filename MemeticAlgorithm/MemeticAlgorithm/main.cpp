@@ -12,7 +12,7 @@ void experiment(const int a, const int b, const int c, const int d, const int e,
 	{
 		MemeticAlgorithm ma(100, 0.2, 0.1, filename);
 		result.push_back(ma.run(a, b, c, d, e)); //2, 4, 3, 2, 3
-		// default: 1, 2, 0, 0, 0
+		// default: 1, 0, 0, 0, 0
 	}
 	double sum = std::accumulate(result.begin(), result.end(), 0);
 	double mean = sum / result.size();
@@ -35,7 +35,7 @@ int main()
 	{
 		for (std::size_t a = 0; a < 2; a += 1)
 		{
-			experiment(a, 2, 0, 0, 0, i);
+			experiment(a, 0, 0, 0, 0, i);
 		}
 		for (std::size_t b = 0; b < 4; b += 1)
 		{
@@ -43,15 +43,15 @@ int main()
 		}
 		for (std::size_t c = 0; c < 3; c += 1)
 		{
-			experiment(1, 2, c, 0, 0, i);
+			experiment(1, 0, c, 0, 0, i);
 		}
 		for (std::size_t d = 0; d < 2; d += 1)
 		{
-			experiment(1, 2, 0, d, 0, i);
+			experiment(1, 0, 0, d, 0, i);
 		}
 		for (std::size_t e = 0; e < 3; e += 1)
 		{
-			experiment(1, 2, 0, 0, e, i);
+			experiment(1, 0, 0, 0, e, i);
 		}
 	}
 	return 0;
