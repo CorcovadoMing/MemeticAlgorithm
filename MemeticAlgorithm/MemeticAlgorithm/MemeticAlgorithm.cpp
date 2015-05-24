@@ -48,7 +48,7 @@ MemeticAlgorithm::MemeticAlgorithm(const int population_size, const double mutat
 
 const int MemeticAlgorithm::run(const int A, const int B, const int C, const int D, const int E)
 {
-	int generation = 100;
+	int generation = 200;
 
 	initialize_[A](this);
 
