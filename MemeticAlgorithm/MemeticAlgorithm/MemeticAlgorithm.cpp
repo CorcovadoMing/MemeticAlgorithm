@@ -297,13 +297,14 @@ void MemeticAlgorithm::CX(const Chromosome &first_parent, const Chromosome &seco
 	std::size_t check_point = RandomRange::random<int>(0, first_parent.size() - 1);
 	std::vector<std::size_t> exchange_element;
 	const int start_element = first_parent[check_point];
+	exchange_element.push_back(check_point);
 	while (second_parent[check_point] != start_element)
 	{
-		exchange_element.push_back(check_point);
 		for (std::size_t i = 0; i < first_parent.size(); i += 1)
 		{
 			if (first_parent[i] == second_parent[check_point])
 			{
+				exchange_element.push_back(i);
 				check_point = i;
 				break;
 			}
