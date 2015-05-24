@@ -15,6 +15,8 @@ MemeticAlgorithm::MemeticAlgorithm(const int population_size, const double mutat
     {
         std::cout << "[Error] jobs = 0, machines = 0" << std::endl;
     }
+	population_size_ = jobs_;
+
     population_ = Population(population_size_ * 2, Chromosome(jobs_, 0));
 
     initialize_.push_back(std::mem_fn(&MemeticAlgorithm::randomInitialize));
@@ -44,11 +46,11 @@ MemeticAlgorithm::MemeticAlgorithm(const int population_size, const double mutat
 
 #pragma region MainLogic
 
-void MemeticAlgorithm::run()
+const int MemeticAlgorithm::run(const int A, const int B, const int C, const int D, const int E)
 {
 	int generation = 100;
 
-	initialize_[0](this);
+	initialize_[A](this);
 
 	// initial fitness evaluation
 	for (std::size_t i = 0; i < population_size_; i += 1)
@@ -71,7 +73,7 @@ void MemeticAlgorithm::run()
 		// crossover
 		for (std::size_t i = 0; i < parent_.size(); i += 2)
 		{
-			crossover_[1](this, population_[parent_[i]], population_[parent_[i + 1]]);
+			crossover_[B](this, population_[parent_[i]], population_[parent_[i + 1]]);
 		}
 
 		// mutation
@@ -79,7 +81,7 @@ void MemeticAlgorithm::run()
 		{
 			if (RandomRange::random<double>(0, 1) < mutation_rate_)
 			{
-				mutation_[0](this, offspring_[i]);
+				mutation_[C](this, offspring_[i]);
 			}
 		}
 
@@ -96,9 +98,9 @@ void MemeticAlgorithm::run()
 		}
 
 		// localsearch
-		for (std::size_t i = 0; i < 10; i += 1)
+		for (std::size_t i = 0; i < (population_size_ / 10) * 2; i += 1)
 		{
-			fitness_table_[i] = applyLocalSearch_[0](this, population_[i], 0);
+			fitness_table_[i] = applyLocalSearch_[D](this, population_[i], E);
 		}
 
 		// record the best fitnesd
@@ -110,7 +112,7 @@ void MemeticAlgorithm::run()
 			}
 		}
 
-		std::cout << best_fitness_ << std::endl;
+		return best_fitness_;
 	}
 }
 

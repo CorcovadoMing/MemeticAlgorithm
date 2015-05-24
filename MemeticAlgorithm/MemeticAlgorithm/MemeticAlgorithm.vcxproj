@@ -90,7 +90,15 @@
     <ClCompile Include="MemeticAlgorithm.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="tai100_10_1.txt" />
     <Text Include="tai100_20_1.txt" />
+    <Text Include="tai100_5_1.txt" />
+    <Text Include="tai20_10_1.txt" />
+    <Text Include="tai20_20_1.txt" />
+    <Text Include="tai20_5_1.txt" />
+    <Text Include="tai50_10_1.txt" />
+    <Text Include="tai50_20_1.txt" />
+    <Text Include="tai50_5_1.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

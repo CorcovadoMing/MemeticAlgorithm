@@ -28,7 +28,7 @@ class MemeticAlgorithm
 
 public:
     MemeticAlgorithm(const int, const double, const double, const std::string &);
-    void run();
+	const int run(const int A, const int B, const int C, const int D, const int E);
 
 private:
 	Population population_, offspring_;
@@ -75,7 +75,7 @@ private:
 	void generationModel();
 
     const double mutation_rate_;
-    const int population_size_;
+    int population_size_;
     const double localsearch_looptime_;
     const std::string filename_;
     unsigned jobs_ = 0;

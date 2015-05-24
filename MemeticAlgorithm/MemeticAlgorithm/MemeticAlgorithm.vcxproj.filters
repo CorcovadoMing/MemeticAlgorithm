@@ -34,5 +34,29 @@
     <Text Include="tai100_20_1.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="tai100_10_1.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="tai100_5_1.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="tai50_10_1.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="tai50_20_1.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="tai50_5_1.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="tai20_10_1.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="tai20_20_1.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="tai20_5_1.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>
