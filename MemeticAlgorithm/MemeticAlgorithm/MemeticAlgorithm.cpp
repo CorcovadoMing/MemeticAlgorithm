@@ -7,7 +7,7 @@
 
 #pragma region Constructor
 
-MemeticAlgorithm::MemeticAlgorithm(const int population_size, const double mutation_rate, const int localsearch_looptime, const std::string& filename)
+MemeticAlgorithm::MemeticAlgorithm(const int population_size, const double mutation_rate, const double localsearch_looptime, const std::string& filename)
 	: population_size_(population_size), mutation_rate_(mutation_rate), localsearch_looptime_(localsearch_looptime), filename_(filename)
 {
     readfile_();
@@ -98,7 +98,7 @@ void MemeticAlgorithm::run()
 		// localsearch
 		for (std::size_t i = 0; i < 10; i += 1)
 		{
-			fitness_table_[i] = applyLocalSearch_[0](this, population_[i], 2);
+			fitness_table_[i] = applyLocalSearch_[0](this, population_[i], 0);
 		}
 
 		// record the best fitnesd
@@ -437,7 +437,7 @@ const Chromosome MemeticAlgorithm::II(const Chromosome &chromosome)
     int best = fitness_(result);
     bool isFound;
 	clock_t start_time = clock();
-	while ((clock() - start_time) / CLOCKS_PER_SEC < localsearch_looptime_)
+	while ((clock() - start_time) / (double)CLOCKS_PER_SEC < localsearch_looptime_)
     {
         isFound = false;
         for (std::size_t i = 0; i < jobs_ - 1 && !isFound; i += 1)
@@ -457,7 +457,6 @@ const Chromosome MemeticAlgorithm::II(const Chromosome &chromosome)
                 }
             }
         }
-		std::cout << best << std::endl;
     }
     return result;
 }
@@ -470,7 +469,7 @@ const Chromosome MemeticAlgorithm::SA(const Chromosome &chromosome)
     int changefirst, changesecond;
 	clock_t start_time = clock();
 
-	while ((clock() - start_time) / CLOCKS_PER_SEC < localsearch_looptime_)
+	while ((clock() - start_time) / (double)CLOCKS_PER_SEC < localsearch_looptime_)
     {
         changefirst = RandomRange::random<int>(0, jobs_ - 1);
         changesecond = RandomRange::random<int>(0, jobs_ - 1);
@@ -505,7 +504,7 @@ const Chromosome MemeticAlgorithm::TS(const Chromosome &chromosome)
 	Chromosome current_best;
 	int best = INT_MAX;
 	clock_t start_time = clock();
-	while ((clock() - start_time) / CLOCKS_PER_SEC < localsearch_looptime_)
+	while ((clock() - start_time) / (double)CLOCKS_PER_SEC < localsearch_looptime_)
 	{
 		for (std::size_t i = 0; i < jobs_ - 1; i += 1)
 		{
