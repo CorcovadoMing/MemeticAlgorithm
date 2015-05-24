@@ -10,7 +10,7 @@ void experiment(const int a, const int b, const int c, const int d, const int e,
 	std::vector<int> result;
 	for (std::size_t loop = 0; loop < 100; loop += 1)
 	{
-		MemeticAlgorithm ma(100, 0.2, 0.5, filename);
+		MemeticAlgorithm ma(100, 0.2, 0.1, filename);
 		result.push_back(ma.run(a, b, c, d, e)); //2, 4, 3, 2, 3
 		// default: 1, 3, 1, 0, 0
 	}

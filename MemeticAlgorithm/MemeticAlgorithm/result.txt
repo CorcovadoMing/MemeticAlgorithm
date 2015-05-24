@@ -1,0 +1,7 @@
+
+Experiment: tai20_5_1.txt 0 3 1 0 0
+Max: 1339
+Min: 1283
+Avg: 1299.95
+Var: 8.13557
+Time: 200.031
