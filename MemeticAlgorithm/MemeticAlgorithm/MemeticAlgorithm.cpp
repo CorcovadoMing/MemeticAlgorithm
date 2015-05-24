@@ -15,7 +15,7 @@ MemeticAlgorithm::MemeticAlgorithm(const int population_size, const double mutat
     {
         std::cout << "[Error] jobs = 0, machines = 0" << std::endl;
     }
-    population_ = Population(population_size_, Chromosome(jobs_, 0));
+    population_ = Population(population_size_ * 2, Chromosome(jobs_, 0));
 
     initialize_.push_back(std::mem_fn(&MemeticAlgorithm::randomInitialize));
     initialize_.push_back(std::mem_fn(&MemeticAlgorithm::heuristicInitialize));
@@ -37,7 +37,7 @@ MemeticAlgorithm::MemeticAlgorithm(const int population_size, const double mutat
 	applyLocalSearch_.push_back(std::mem_fn(&MemeticAlgorithm::applyLocalSearchByBaldwinian));
 
 	parent_ = std::vector<std::size_t>(population_size_, 0);
-	fitness_table_ = std::vector<int>(population_size_, 0);
+	fitness_table_ = std::vector<int>(population_size_ * 2, 0);
 }
 
 #pragma endregion
@@ -51,15 +51,17 @@ void MemeticAlgorithm::run()
 	initialize_[0](this);
 
 	// initial fitness evaluation
-	for (std::size_t i = 0; i < fitness_table_.size(); i += 1)
+	for (std::size_t i = 0; i < population_size_; i += 1)
 	{
 		fitness_table_[i] = fitness_(population_[i]);
 	}
 
-	int current_min = *std::min_element(fitness_table_.begin(), fitness_table_.end());
-	if (current_min < best_fitness_)
+	for (std::size_t i = 0; i < population_size_; i += 1)
 	{
-		best_fitness_ = current_min;
+		if (fitness_table_[i] < best_fitness_)
+		{
+			best_fitness_ = fitness_table_[i];
+		}
 	}
 
 	while (generation--)
@@ -81,12 +83,14 @@ void MemeticAlgorithm::run()
 			}
 		}
 
-		generationModel();
+		//generationModel();
+		tophalf();
+
 		offspring_.clear();
 
 
 		// re-evaluate fitness
-		for (std::size_t i = 0; i < fitness_table_.size(); i += 1)
+		for (std::size_t i = 0; i < population_size_; i += 1)
 		{
 			fitness_table_[i] = fitness_(population_[i]);
 		}
@@ -94,14 +98,16 @@ void MemeticAlgorithm::run()
 		// localsearch
 		for (std::size_t i = 0; i < 10; i += 1)
 		{
-			fitness_table_[i] = applyLocalSearch_[0](this, population_[i], 1);
+			fitness_table_[i] = applyLocalSearch_[0](this, population_[i], 2);
 		}
 
 		// record the best fitnesd
-		int current_min = *std::min_element(fitness_table_.begin(), fitness_table_.end());
-		if (current_min < best_fitness_)
+		for (std::size_t i = 0; i < population_size_; i += 1)
 		{
-			best_fitness_ = current_min;
+			if (fitness_table_[i] < best_fitness_)
+			{
+				best_fitness_ = fitness_table_[i];
+			}
 		}
 
 		std::cout << best_fitness_ << std::endl;
@@ -114,15 +120,15 @@ void MemeticAlgorithm::run()
 
 void MemeticAlgorithm::randomInitialize()
 {
-    for (auto &i : population_)
-    {
-        int count = 0;
-        for (auto &j : i)
+	for (std::size_t i = 0; i < population_size_; i += 1)
+	{
+		int count = 0;
+		for (auto &j : population_[i])
         {
             j = count;
             count += 1;
         }
-        std::shuffle(i.begin(), i.end(), RandomRange::RandomGenerator);
+		std::shuffle(population_[i].begin(), population_[i].end(), RandomRange::RandomGenerator);
     }
 }
 
@@ -353,14 +359,55 @@ void MemeticAlgorithm::inverse(Chromosome &chromosome)
 
 void MemeticAlgorithm::tophalf()
 {
-	for (const auto i : offspring_)
+	// append child into back of population
+	for (std::size_t i = 0; i < population_size_; i += 1)
 	{
-		population_.push_back(i);
+		population_[i + population_size_] = offspring_[i];
 	}
-	if (population_size_ * 2 != population_.size())
+
+	for (std::size_t i = 0; i < population_.size(); i += 1)
 	{
-		std::cout << "[Error] wjen offspring merge into population" << std::endl;
-		std::cout << "Expect " << population_size_ * 2 << ", but " << population_.size() << std::endl;
+		fitness_table_[i] = fitness_(population_[i]);
+	}
+
+	// sort
+	struct MyComparator
+	{
+		const std::vector<int> & value_vector;
+
+		MyComparator(const std::vector<int> & val_vec) :
+			value_vector(val_vec) {}
+
+		bool operator()(int i1, int i2)
+		{
+			return value_vector[i1] < value_vector[i2];
+		}
+	};
+
+	std::vector<int> index(population_size_ * 2, 0);
+	for (std::size_t i = 0; i < fitness_table_.size(); i += 1)
+	{
+		index[i] = i;
+	}
+	
+	sort(index.begin(), index.end(), MyComparator(fitness_table_));
+
+	Population tmp(population_size_, Chromosome());
+
+	for (std::size_t i = 0; i < population_size_; i += 1)
+	{
+		for (std::size_t j = 0; j < index.size(); j += 1)
+		{
+			if (index[j] == i)
+			{
+				tmp[i] = population_[j];
+			}
+		}
+	}
+
+	for (std::size_t i = 0; i < population_size_; i += 1)
+	{
+		population_[i] = tmp[i];
 	}
 }
 
