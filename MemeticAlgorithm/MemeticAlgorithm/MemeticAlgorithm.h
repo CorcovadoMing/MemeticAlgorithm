@@ -76,7 +76,7 @@ private:
 
     const double mutation_rate_;
     const int population_size_;
-    const int localsearch_looptimes_;
+    const int localsearch_looptime_;
     const std::string filename_;
     unsigned jobs_ = 0;
     unsigned machines_ = 0;

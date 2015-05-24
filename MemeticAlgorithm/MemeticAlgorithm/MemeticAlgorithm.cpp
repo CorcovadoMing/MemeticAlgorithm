@@ -3,11 +3,12 @@
 #include <iostream>
 #include <fstream>
 #include <algorithm>
+#include <ctime>
 
 #pragma region Constructor
 
-MemeticAlgorithm::MemeticAlgorithm(const int population_size, const double mutation_rate, const int localsearch_looptimes, const std::string& filename)
-    : population_size_(population_size), mutation_rate_(mutation_rate), localsearch_looptimes_(localsearch_looptimes), filename_(filename)
+MemeticAlgorithm::MemeticAlgorithm(const int population_size, const double mutation_rate, const int localsearch_looptime, const std::string& filename)
+	: population_size_(population_size), mutation_rate_(mutation_rate), localsearch_looptime_(localsearch_looptime), filename_(filename)
 {
     readfile_();
     if (jobs_ == 0 || machines_ == 0)
@@ -46,14 +47,32 @@ MemeticAlgorithm::MemeticAlgorithm(const int population_size, const double mutat
 void MemeticAlgorithm::run()
 {
 	int generation = 100;
+
 	initialize_[0](this);
-	while (generation -= 1)
+
+	// initial fitness evaluation
+	for (std::size_t i = 0; i < fitness_table_.size(); i += 1)
+	{
+		fitness_table_[i] = fitness_(population_[i]);
+	}
+
+	int current_min = *std::min_element(fitness_table_.begin(), fitness_table_.end());
+	if (current_min < best_fitness_)
+	{
+		best_fitness_ = current_min;
+	}
+
+	while (generation--)
 	{
 		tournament();
+
+		// crossover
 		for (std::size_t i = 0; i < parent_.size(); i += 2)
 		{
-			crossover_[0](this, population_[parent_[i]], population_[parent_[i + 1]]);
+			crossover_[1](this, population_[parent_[i]], population_[parent_[i + 1]]);
 		}
+
+		// mutation
 		for (std::size_t i = 0; i < offspring_.size(); i += 1)
 		{
 			if (RandomRange::random<double>(0, 1) < mutation_rate_)
@@ -65,9 +84,24 @@ void MemeticAlgorithm::run()
 		generationModel();
 		offspring_.clear();
 
+
+		// re-evaluate fitness
+		for (std::size_t i = 0; i < fitness_table_.size(); i += 1)
+		{
+			fitness_table_[i] = fitness_(population_[i]);
+		}
+
+		// localsearch
 		for (std::size_t i = 0; i < 10; i += 1)
 		{
-			applyLocalSearch_[0](this, population_[i], 0);
+			fitness_table_[i] = applyLocalSearch_[0](this, population_[i], 1);
+		}
+
+		// record the best fitnesd
+		int current_min = *std::min_element(fitness_table_.begin(), fitness_table_.end());
+		if (current_min < best_fitness_)
+		{
+			best_fitness_ = current_min;
 		}
 
 		std::cout << best_fitness_ << std::endl;
@@ -80,7 +114,6 @@ void MemeticAlgorithm::run()
 
 void MemeticAlgorithm::randomInitialize()
 {
-    // Assign to Ming rf37535@gmail.com [Done]
     for (auto &i : population_)
     {
         int count = 0;
@@ -95,12 +128,11 @@ void MemeticAlgorithm::randomInitialize()
 
 void MemeticAlgorithm::heuristicInitialize()
 {
-    // Assign to Ming rf37535@gmail.com [Done]
 	const std::size_t heuristic_solution_size = population_size_ / 10;
 	randomInitialize();
 	for (std::size_t i = 0; i < heuristic_solution_size; i += 1)
 	{
-		localSearch_[0](this, population_[i]); // II
+		localSearch_[0](this, population_[i]);
 	}
 }
 
@@ -110,17 +142,6 @@ void MemeticAlgorithm::heuristicInitialize()
 
 void MemeticAlgorithm::tournament()
 {
-	for (std::size_t i = 0; i < fitness_table_.size(); i += 1)
-	{
-		fitness_table_[i] = fitness_(population_[i]);
-	}
-
-	int current_min = *std::min_element(fitness_table_.begin(), fitness_table_.end());
-	if (current_min < best_fitness_)
-	{
-		best_fitness_ = current_min;
-	}
-
 	for (std::size_t i = 0; i < parent_.size(); i += 1)
 	{
 		const std::size_t first = RandomRange::random<int>(0, population_size_ - 1);
@@ -145,13 +166,9 @@ void MemeticAlgorithm::OX(const Chromosome &first_parent, const Chromosome &seco
 {
     std::size_t chromosome_size = first_parent.size();
 	std::size_t inherit_index = RandomRange::random<int>(0, chromosome_size - 2);
-//	cout << "inherit_index = " << inherit_index << endl;
 	std::size_t inherit_length = RandomRange::random<int>(inherit_index + 1, chromosome_size - 1) - inherit_index;
-//  cout << "inherit_length = " << inherit_length << endl;
 
-    //first_child inherit first_parent, and other is second_parent, use first_temp
     Chromosome first_temp(second_parent), first_child(first_parent);
-    //second_child inherit second_parent, and other is first_parent, use second_temp
     Chromosome second_temp(first_parent), second_child(second_parent);
 
     //mark which had been inherited
@@ -336,7 +353,15 @@ void MemeticAlgorithm::inverse(Chromosome &chromosome)
 
 void MemeticAlgorithm::tophalf()
 {
-
+	for (const auto i : offspring_)
+	{
+		population_.push_back(i);
+	}
+	if (population_size_ * 2 != population_.size())
+	{
+		std::cout << "[Error] wjen offspring merge into population" << std::endl;
+		std::cout << "Expect " << population_size_ * 2 << ", but " << population_.size() << std::endl;
+	}
 }
 
 void MemeticAlgorithm::generationModel()
@@ -363,9 +388,9 @@ const Chromosome MemeticAlgorithm::II(const Chromosome &chromosome)
 {
     Chromosome result(chromosome);
     int best = fitness_(result);
-    int looptimes = localsearch_looptimes_;
     bool isFound;
-    while (looptimes -= 1)
+	clock_t start_time = clock();
+	while ((clock() - start_time) / CLOCKS_PER_SEC < localsearch_looptime_)
     {
         isFound = false;
         for (std::size_t i = 0; i < jobs_ - 1 && !isFound; i += 1)
@@ -385,6 +410,7 @@ const Chromosome MemeticAlgorithm::II(const Chromosome &chromosome)
                 }
             }
         }
+		std::cout << best << std::endl;
     }
     return result;
 }
@@ -393,10 +419,11 @@ const Chromosome MemeticAlgorithm::SA(const Chromosome &chromosome)
 {
     Chromosome result(chromosome);
 	int best = fitness_(result), score;
-    int looptimes = localsearch_looptimes_;
-    double temperature = 60;
+    double temperature = 1000;
     int changefirst, changesecond;
-    while (looptimes -= 1 && temperature > 0.3)
+	clock_t start_time = clock();
+
+	while ((clock() - start_time) / CLOCKS_PER_SEC < localsearch_looptime_)
     {
         changefirst = RandomRange::random<int>(0, jobs_ - 1);
         changesecond = RandomRange::random<int>(0, jobs_ - 1);
@@ -417,7 +444,7 @@ const Chromosome MemeticAlgorithm::SA(const Chromosome &chromosome)
                 std::swap(result[changefirst], result[changesecond]);
             }
         }
-        temperature *= 0.9;
+        temperature *= 0.99;
     }
     return result;
 }
@@ -428,11 +455,11 @@ const Chromosome MemeticAlgorithm::TS(const Chromosome &chromosome)
 	int tabu_current = 0;
 	std::vector<int> tabulist(tabu_length, 0);
 	Chromosome result(chromosome);
-	int looptimes = localsearch_looptimes_;
-	while (looptimes -= 1)
+	Chromosome current_best;
+	int best = INT_MAX;
+	clock_t start_time = clock();
+	while ((clock() - start_time) / CLOCKS_PER_SEC < localsearch_looptime_)
 	{
-		int best = INT_MAX;
-		Chromosome current_best;
 		for (std::size_t i = 0; i < jobs_ - 1; i += 1)
 		{
 			for (std::size_t j = i + 1; j < jobs_; j += 1)
