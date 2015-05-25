@@ -136,11 +136,11 @@ void MemeticAlgorithm::randomInitialize()
 
 void MemeticAlgorithm::heuristicInitialize()
 {
-	const std::size_t heuristic_solution_size = population_size_ / 10;
+	const std::size_t heuristic_solution_size = population_size_ / 30;
 	randomInitialize();
 	for (std::size_t i = 0; i < heuristic_solution_size; i += 1)
 	{
-		localSearch_[0](this, population_[i]);
+		population_[i] = localSearch_[0](this, population_[i]);
 	}
 }
 
