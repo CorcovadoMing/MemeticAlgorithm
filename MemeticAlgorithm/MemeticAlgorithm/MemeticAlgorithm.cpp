@@ -85,8 +85,8 @@ const int MemeticAlgorithm::run(const int A, const int B, const int C, const int
 			}
 		}
 
-		generationModel();
-		//tophalf();
+		//generationModel();
+		tophalf();
 
 		offspring_.clear();
 
