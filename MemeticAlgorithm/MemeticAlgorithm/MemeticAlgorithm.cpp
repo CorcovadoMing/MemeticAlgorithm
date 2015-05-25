@@ -392,7 +392,7 @@ void MemeticAlgorithm::tophalf()
 	{
 		index[i] = i;
 	}
-	
+
 	sort(index.begin(), index.end(), MyComparator(fitness_table_));
 
 	Population tmp(population_size_, Chromosome());
@@ -468,7 +468,7 @@ const Chromosome MemeticAlgorithm::SA(const Chromosome &chromosome)
 {
     Chromosome result(chromosome);
 	int best = fitness_(result), score;
-    double temperature = 1000;
+    double temperature = 100000;
     int changefirst, changesecond;
 	clock_t start_time = clock();
 
@@ -493,7 +493,7 @@ const Chromosome MemeticAlgorithm::SA(const Chromosome &chromosome)
                 std::swap(result[changefirst], result[changesecond]);
             }
         }
-        temperature *= 0.99;
+        temperature *= 0.9999;
     }
     return result;
 }
