@@ -468,7 +468,7 @@ const Chromosome MemeticAlgorithm::SA(const Chromosome &chromosome)
 {
     Chromosome result(chromosome);
 	int best = fitness_(result), score;
-    double temperature = 100000;
+    double temperature = 1000;
     int changefirst, changesecond;
 	clock_t start_time = clock();
 
@@ -493,7 +493,8 @@ const Chromosome MemeticAlgorithm::SA(const Chromosome &chromosome)
                 std::swap(result[changefirst], result[changesecond]);
             }
         }
-        temperature *= 0.9999;
+        temperature *= 0.99;
+        std::cout << best << std::endl;
     }
     return result;
 }
