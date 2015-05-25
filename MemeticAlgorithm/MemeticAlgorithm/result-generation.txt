@@ -1,0 +1,84 @@
+
+Experiment: tai20_5_1.txt 0 2 1 1 1
+Max: 1283
+Min: 1278
+Avg: 1278.05
+Var: 0.497494
+Time: 43.75
+
+Experiment: tai20_5_1.txt 1 2 1 1 1
+Max: 1278
+Min: 1278
+Avg: 1278
+Var: 0
+Time: 43.749
+
+Experiment: tai20_5_1.txt 1 0 1 1 1
+Max: 1278
+Min: 1278
+Avg: 1278
+Var: 0
+Time: 43.75
+
+Experiment: tai20_5_1.txt 1 1 1 1 1
+Max: 1278
+Min: 1278
+Avg: 1278
+Var: 0
+Time: 43.751
+
+Experiment: tai20_5_1.txt 1 2 1 1 1
+Max: 1286
+Min: 1278
+Avg: 1278.08
+Var: 0.79599
+Time: 43.75
+
+Experiment: tai20_5_1.txt 1 3 1 1 1
+Max: 1279
+Min: 1278
+Avg: 1278.01
+Var: 0.0994987
+Time: 43.75
+
+Experiment: tai20_5_1.txt 1 2 0 1 1
+Max: 1278
+Min: 1278
+Avg: 1278
+Var: 0
+Time: 43.75
+
+Experiment: tai20_5_1.txt 1 2 1 1 1
+Max: 1278
+Min: 1278
+Avg: 1278
+Var: 0
+Time: 43.75
+
+Experiment: tai20_5_1.txt 1 2 2 1 1
+Max: 1278
+Min: 1278
+Avg: 1278
+Var: 0
+Time: 43.75
+
+Experiment: tai20_5_1.txt 1 2 1 0 1
+Max: 1278
+Min: 1278
+Avg: 1278
+Var: 0
+Time: 43.75
+
+Experiment: tai20_5_1.txt 1 2 1 1 1
+Max: 1278
+Min: 1278
+Avg: 1278
+Var: 0
+Time: 43.749
+
+Experiment: tai20_5_1.txt 1 2 1 1 0
+Max: 1359
+Min: 1278
+Avg: 1300.05
+Var: 10.9484
+Time: 43.75
