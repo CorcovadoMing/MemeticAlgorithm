@@ -494,7 +494,6 @@ const Chromosome MemeticAlgorithm::SA(const Chromosome &chromosome)
             }
         }
         temperature *= 0.99;
-        std::cout << best << std::endl;
     }
     return result;
 }
