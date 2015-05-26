@@ -1,0 +1,882 @@
+
+Experiment: tai20_5_1.txt 0 2 1 1 1
+Max: 1278
+Min: 1278
+Avg: 1278
+Var: 0
+Time: 218.75
+
+Experiment: tai20_5_1.txt 1 2 1 1 1
+Max: 1278
+Min: 1278
+Avg: 1278
+Var: 0
+Time: 251.562
+
+Experiment: tai20_5_1.txt 1 0 1 1 1
+Max: 1278
+Min: 1278
+Avg: 1278
+Var: 0
+Time: 251.563
+
+Experiment: tai20_5_1.txt 1 1 1 1 1
+Max: 1278
+Min: 1278
+Avg: 1278
+Var: 0
+Time: 251.562
+
+Experiment: tai20_5_1.txt 1 2 1 1 1
+Max: 1278
+Min: 1278
+Avg: 1278
+Var: 0
+Time: 251.563
+
+Experiment: tai20_5_1.txt 1 3 1 1 1
+Max: 1278
+Min: 1278
+Avg: 1278
+Var: 0
+Time: 251.562
+
+Experiment: tai20_5_1.txt 1 2 0 1 1
+Max: 1278
+Min: 1278
+Avg: 1278
+Var: 0
+Time: 251.563
+
+Experiment: tai20_5_1.txt 1 2 1 1 1
+Max: 1278
+Min: 1278
+Avg: 1278
+Var: 0
+Time: 251.562
+
+Experiment: tai20_5_1.txt 1 2 2 1 1
+Max: 1278
+Min: 1278
+Avg: 1278
+Var: 0
+Time: 251.563
+
+Experiment: tai20_5_1.txt 1 2 1 0 1
+Max: 1278
+Min: 1278
+Avg: 1278
+Var: 0
+Time: 251.563
+
+Experiment: tai20_5_1.txt 1 2 1 1 1
+Max: 1278
+Min: 1278
+Avg: 1278
+Var: 0
+Time: 251.561
+
+Experiment: tai20_5_1.txt 1 2 1 1 0
+Max: 1297
+Min: 1278
+Avg: 1292.82
+Var: 6.43643
+Time: 251.563
+
+Experiment: tai20_5_1.txt 1 2 1 1 1
+Max: 1278
+Min: 1278
+Avg: 1278
+Var: 0
+Time: 251.563
+
+Experiment: tai20_5_1.txt 1 2 1 1 2
+Max: 1297
+Min: 1278
+Avg: 1295.17
+Var: 4.92961
+Time: 251.562
+
+Experiment: tai20_10_1.txt 0 2 1 1 1
+Max: 1610
+Min: 1583
+Avg: 1593.07
+Var: 5.75023
+Time: 218.751
+
+Experiment: tai20_10_1.txt 1 2 1 1 1
+Max: 1607
+Min: 1583
+Avg: 1595.33
+Var: 5.90433
+Time: 251.562
+
+Experiment: tai20_10_1.txt 1 0 1 1 1
+Max: 1607
+Min: 1583
+Avg: 1594.82
+Var: 5.72255
+Time: 251.563
+
+Experiment: tai20_10_1.txt 1 1 1 1 1
+Max: 1612
+Min: 1583
+Avg: 1594.77
+Var: 6.74664
+Time: 251.562
+
+Experiment: tai20_10_1.txt 1 2 1 1 1
+Max: 1609
+Min: 1583
+Avg: 1594.88
+Var: 6.62009
+Time: 251.562
+
+Experiment: tai20_10_1.txt 1 3 1 1 1
+Max: 1605
+Min: 1583
+Avg: 1594.34
+Var: 5.64663
+Time: 251.563
+
+Experiment: tai20_10_1.txt 1 2 0 1 1
+Max: 1608
+Min: 1583
+Avg: 1593.88
+Var: 6.38009
+Time: 251.562
+
+Experiment: tai20_10_1.txt 1 2 1 1 1
+Max: 1612
+Min: 1583
+Avg: 1595.16
+Var: 6.59048
+Time: 251.563
+
+Experiment: tai20_10_1.txt 1 2 2 1 1
+Max: 1611
+Min: 1583
+Avg: 1595.43
+Var: 5.86388
+Time: 251.563
+
+Experiment: tai20_10_1.txt 1 2 1 0 1
+Max: 1608
+Min: 1583
+Avg: 1595.13
+Var: 6.15899
+Time: 251.562
+
+Experiment: tai20_10_1.txt 1 2 1 1 1
+Max: 1608
+Min: 1583
+Avg: 1595.18
+Var: 6.18608
+Time: 251.562
+
+Experiment: tai20_10_1.txt 1 2 1 1 0
+Max: 1645
+Min: 1593
+Avg: 1618.88
+Var: 9.04243
+Time: 251.563
+
+Experiment: tai20_10_1.txt 1 2 1 1 1
+Max: 1610
+Min: 1583
+Avg: 1594.06
+Var: 5.81691
+Time: 251.562
+
+Experiment: tai20_10_1.txt 1 2 1 1 2
+Max: 1643
+Min: 1593
+Avg: 1617.81
+Var: 9.50967
+Time: 251.563
+
+Experiment: tai20_20_1.txt 0 2 1 1 1
+Max: 2347
+Min: 2312
+Avg: 2328.02
+Var: 8.03614
+Time: 218.75
+
+Experiment: tai20_20_1.txt 1 2 1 1 1
+Max: 2350
+Min: 2309
+Avg: 2328.55
+Var: 8.9335
+Time: 251.562
+
+Experiment: tai20_20_1.txt 1 0 1 1 1
+Max: 2349
+Min: 2306
+Avg: 2328.46
+Var: 8.69531
+Time: 251.563
+
+Experiment: tai20_20_1.txt 1 1 1 1 1
+Max: 2347
+Min: 2307
+Avg: 2327.65
+Var: 7.25172
+Time: 251.562
+
+Experiment: tai20_20_1.txt 1 2 1 1 1
+Max: 2352
+Min: 2297
+Avg: 2328.03
+Var: 9.04373
+Time: 251.562
+
+Experiment: tai20_20_1.txt 1 3 1 1 1
+Max: 2346
+Min: 2312
+Avg: 2328.04
+Var: 8.18892
+Time: 251.563
+
+Experiment: tai20_20_1.txt 1 2 0 1 1
+Max: 2354
+Min: 2305
+Avg: 2330.38
+Var: 9.371
+Time: 251.562
+
+Experiment: tai20_20_1.txt 1 2 1 1 1
+Max: 2349
+Min: 2308
+Avg: 2328.6
+Var: 7.59342
+Time: 251.564
+
+Experiment: tai20_20_1.txt 1 2 2 1 1
+Max: 2347
+Min: 2307
+Avg: 2328.33
+Var: 8.444
+Time: 251.562
+
+Experiment: tai20_20_1.txt 1 2 1 0 1
+Max: 2349
+Min: 2306
+Avg: 2328.18
+Var: 8.91222
+Time: 251.562
+
+Experiment: tai20_20_1.txt 1 2 1 1 1
+Max: 2346
+Min: 2303
+Avg: 2327.86
+Var: 8.88934
+Time: 251.563
+
+Experiment: tai20_20_1.txt 1 2 1 1 0
+Max: 2385
+Min: 2317
+Avg: 2347.85
+Var: 12.6731
+Time: 251.562
+
+Experiment: tai20_20_1.txt 1 2 1 1 1
+Max: 2354
+Min: 2300
+Avg: 2328.55
+Var: 8.5339
+Time: 251.563
+
+Experiment: tai20_20_1.txt 1 2 1 1 2
+Max: 2378
+Min: 2302
+Avg: 2345.5
+Var: 12.7754
+Time: 251.562
+
+Experiment: tai50_5_1.txt 0 2 1 1 1
+Max: 2724
+Min: 2724
+Avg: 2724
+Var: 0
+Time: 218.75
+
+Experiment: tai50_5_1.txt 1 2 1 1 1
+Max: 2724
+Min: 2724
+Avg: 2724
+Var: 0
+Time: 251.563
+
+Experiment: tai50_5_1.txt 1 0 1 1 1
+Max: 2724
+Min: 2724
+Avg: 2724
+Var: 0
+Time: 251.562
+
+Experiment: tai50_5_1.txt 1 1 1 1 1
+Max: 2724
+Min: 2724
+Avg: 2724
+Var: 0
+Time: 251.562
+
+Experiment: tai50_5_1.txt 1 2 1 1 1
+Max: 2724
+Min: 2724
+Avg: 2724
+Var: 0
+Time: 251.563
+
+Experiment: tai50_5_1.txt 1 3 1 1 1
+Max: 2724
+Min: 2724
+Avg: 2724
+Var: 0
+Time: 251.563
+
+Experiment: tai50_5_1.txt 1 2 0 1 1
+Max: 2724
+Min: 2724
+Avg: 2724
+Var: 0
+Time: 251.563
+
+Experiment: tai50_5_1.txt 1 2 1 1 1
+Max: 2724
+Min: 2724
+Avg: 2724
+Var: 0
+Time: 251.562
+
+Experiment: tai50_5_1.txt 1 2 2 1 1
+Max: 2724
+Min: 2724
+Avg: 2724
+Var: 0
+Time: 251.562
+
+Experiment: tai50_5_1.txt 1 2 1 0 1
+Max: 2724
+Min: 2724
+Avg: 2724
+Var: 0
+Time: 251.563
+
+Experiment: tai50_5_1.txt 1 2 1 1 1
+Max: 2724
+Min: 2724
+Avg: 2724
+Var: 0
+Time: 251.562
+
+Experiment: tai50_5_1.txt 1 2 1 1 0
+Max: 2735
+Min: 2724
+Avg: 2728.11
+Var: 2.54124
+Time: 251.562
+
+Experiment: tai50_5_1.txt 1 2 1 1 1
+Max: 2724
+Min: 2724
+Avg: 2724
+Var: 0
+Time: 251.563
+
+Experiment: tai50_5_1.txt 1 2 1 1 2
+Max: 2741
+Min: 2724
+Avg: 2731.2
+Var: 3.92938
+Time: 251.562
+
+Experiment: tai50_10_1.txt 0 2 1 1 1
+Max: 3069
+Min: 3033
+Avg: 3042.61
+Var: 6.35908
+Time: 218.75
+
+Experiment: tai50_10_1.txt 1 2 1 1 1
+Max: 3055
+Min: 3026
+Avg: 3042.25
+Var: 5.38029
+Time: 251.563
+
+Experiment: tai50_10_1.txt 1 0 1 1 1
+Max: 3060
+Min: 3025
+Avg: 3042.2
+Var: 6.81909
+Time: 251.563
+
+Experiment: tai50_10_1.txt 1 1 1 1 1
+Max: 3063
+Min: 3028
+Avg: 3043.43
+Var: 6.33286
+Time: 251.562
+
+Experiment: tai50_10_1.txt 1 2 1 1 1
+Max: 3056
+Min: 3027
+Avg: 3043.53
+Var: 5.35809
+Time: 251.563
+
+Experiment: tai50_10_1.txt 1 3 1 1 1
+Max: 3058
+Min: 3025
+Avg: 3042.21
+Var: 5.75203
+Time: 251.563
+
+Experiment: tai50_10_1.txt 1 2 0 1 1
+Max: 3053
+Min: 3025
+Avg: 3041.41
+Var: 5.71856
+Time: 251.561
+
+Experiment: tai50_10_1.txt 1 2 1 1 1
+Max: 3056
+Min: 3026
+Avg: 3042.21
+Var: 6.13236
+Time: 251.563
+
+Experiment: tai50_10_1.txt 1 2 2 1 1
+Max: 3058
+Min: 3025
+Avg: 3042.18
+Var: 6.16179
+Time: 251.563
+
+Experiment: tai50_10_1.txt 1 2 1 0 1
+Max: 3058
+Min: 3025
+Avg: 3042.31
+Var: 6.12323
+Time: 251.562
+
+Experiment: tai50_10_1.txt 1 2 1 1 1
+Max: 3059
+Min: 3025
+Avg: 3042.97
+Var: 6.15216
+Time: 251.563
+
+Experiment: tai50_10_1.txt 1 2 1 1 0
+Max: 3142
+Min: 3062
+Avg: 3106.75
+Var: 16.999
+Time: 251.562
+
+Experiment: tai50_10_1.txt 1 2 1 1 1
+Max: 3056
+Min: 3025
+Avg: 3043.45
+Var: 5.90995
+Time: 251.563
+
+Experiment: tai50_10_1.txt 1 2 1 1 2
+Max: 3141
+Min: 3063
+Avg: 3113.47
+Var: 15.6987
+Time: 251.563
+
+Experiment: tai50_20_1.txt 0 2 1 1 1
+Max: 3973
+Min: 3923
+Avg: 3952.86
+Var: 10.4623
+Time: 218.749
+
+Experiment: tai50_20_1.txt 1 2 1 1 1
+Max: 3972
+Min: 3914
+Avg: 3950.48
+Var: 10.9183
+Time: 251.563
+
+Experiment: tai50_20_1.txt 1 0 1 1 1
+Max: 3969
+Min: 3924
+Avg: 3951.12
+Var: 9.61902
+Time: 251.562
+
+Experiment: tai50_20_1.txt 1 1 1 1 1
+Max: 3974
+Min: 3929
+Avg: 3952.8
+Var: 9.82141
+Time: 251.563
+
+Experiment: tai50_20_1.txt 1 2 1 1 1
+Max: 3971
+Min: 3928
+Avg: 3952.78
+Var: 9.10338
+Time: 251.562
+
+Experiment: tai50_20_1.txt 1 3 1 1 1
+Max: 3974
+Min: 3926
+Avg: 3952.56
+Var: 10.6671
+Time: 251.562
+
+Experiment: tai50_20_1.txt 1 2 0 1 1
+Max: 3973
+Min: 3926
+Avg: 3950.72
+Var: 10.4289
+Time: 251.564
+
+Experiment: tai50_20_1.txt 1 2 1 1 1
+Max: 3975
+Min: 3910
+Avg: 3950.35
+Var: 10.3008
+Time: 251.561
+
+Experiment: tai50_20_1.txt 1 2 2 1 1
+Max: 3977
+Min: 3924
+Avg: 3952.78
+Var: 9.38997
+Time: 251.563
+
+Experiment: tai50_20_1.txt 1 2 1 0 1
+Max: 3975
+Min: 3930
+Avg: 3951.52
+Var: 9.80253
+Time: 251.562
+
+Experiment: tai50_20_1.txt 1 2 1 1 1
+Max: 3972
+Min: 3926
+Avg: 3951.24
+Var: 9.99712
+Time: 251.563
+
+Experiment: tai50_20_1.txt 1 2 1 1 0
+Max: 4031
+Min: 3955
+Avg: 3998.02
+Var: 15.1473
+Time: 251.562
+
+Experiment: tai50_20_1.txt 1 2 1 1 1
+Max: 3972
+Min: 3921
+Avg: 3951.57
+Var: 10.1639
+Time: 251.564
+
+Experiment: tai50_20_1.txt 1 2 1 1 2
+Max: 4033
+Min: 3970
+Avg: 4005.74
+Var: 14.6538
+Time: 251.561
+
+Experiment: tai100_5_1.txt 0 2 1 1 1
+Max: 5495
+Min: 5493
+Avg: 5493.14
+Var: 0.510294
+Time: 218.75
+
+Experiment: tai100_5_1.txt 1 2 1 1 1
+Max: 5495
+Min: 5493
+Avg: 5493.2
+Var: 0.6
+Time: 251.563
+
+Experiment: tai100_5_1.txt 1 0 1 1 1
+Max: 5495
+Min: 5493
+Avg: 5493.12
+Var: 0.474974
+Time: 251.563
+
+Experiment: tai100_5_1.txt 1 1 1 1 1
+Max: 5495
+Min: 5493
+Avg: 5493.2
+Var: 0.6
+Time: 251.563
+
+Experiment: tai100_5_1.txt 1 2 1 1 1
+Max: 5495
+Min: 5493
+Avg: 5493.14
+Var: 0.510294
+Time: 251.562
+
+Experiment: tai100_5_1.txt 1 3 1 1 1
+Max: 5495
+Min: 5493
+Avg: 5493.22
+Var: 0.62578
+Time: 251.562
+
+Experiment: tai100_5_1.txt 1 2 0 1 1
+Max: 5495
+Min: 5493
+Avg: 5493.14
+Var: 0.510294
+Time: 251.563
+
+Experiment: tai100_5_1.txt 1 2 1 1 1
+Max: 5495
+Min: 5493
+Avg: 5493.08
+Var: 0.391918
+Time: 251.562
+
+Experiment: tai100_5_1.txt 1 2 2 1 1
+Max: 5495
+Min: 5493
+Avg: 5493.14
+Var: 0.510294
+Time: 251.562
+
+Experiment: tai100_5_1.txt 1 2 1 0 1
+Max: 5495
+Min: 5493
+Avg: 5493.2
+Var: 0.6
+Time: 251.563
+
+Experiment: tai100_5_1.txt 1 2 1 1 1
+Max: 5495
+Min: 5493
+Avg: 5493.2
+Var: 0.6
+Time: 251.563
+
+Experiment: tai100_5_1.txt 1 2 1 1 0
+Max: 5505
+Min: 5493
+Avg: 5494.86
+Var: 1.20847
+Time: 251.562
+
+Experiment: tai100_5_1.txt 1 2 1 1 1
+Max: 5495
+Min: 5493
+Avg: 5493.16
+Var: 0.542586
+Time: 251.563
+
+Experiment: tai100_5_1.txt 1 2 1 1 2
+Max: 5505
+Min: 5493
+Avg: 5495.38
+Var: 1.80986
+Time: 251.563
+
+Experiment: tai100_10_1.txt 0 2 1 1 1
+Max: 5815
+Min: 5783
+Avg: 5793.92
+Var: 7.54411
+Time: 218.749
+
+Experiment: tai100_10_1.txt 1 2 1 1 1
+Max: 5818
+Min: 5777
+Avg: 5794.44
+Var: 7.90736
+Time: 251.563
+
+Experiment: tai100_10_1.txt 1 0 1 1 1
+Max: 5814
+Min: 5784
+Avg: 5794.84
+Var: 7.28796
+Time: 251.562
+
+Experiment: tai100_10_1.txt 1 1 1 1 1
+Max: 5814
+Min: 5782
+Avg: 5796.01
+Var: 7.33007
+Time: 251.563
+
+Experiment: tai100_10_1.txt 1 2 1 1 1
+Max: 5814
+Min: 5781
+Avg: 5794.56
+Var: 7.40854
+Time: 251.562
+
+Experiment: tai100_10_1.txt 1 3 1 1 1
+Max: 5813
+Min: 5774
+Avg: 5793.17
+Var: 7.8052
+Time: 251.563
+
+Experiment: tai100_10_1.txt 1 2 0 1 1
+Max: 5814
+Min: 5777
+Avg: 5795.5
+Var: 7.39797
+Time: 251.562
+
+Experiment: tai100_10_1.txt 1 2 1 1 1
+Max: 5813
+Min: 5781
+Avg: 5794.69
+Var: 7.51757
+Time: 251.563
+
+Experiment: tai100_10_1.txt 1 2 2 1 1
+Max: 5811
+Min: 5782
+Avg: 5794.68
+Var: 6.80864
+Time: 251.562
+
+Experiment: tai100_10_1.txt 1 2 1 0 1
+Max: 5814
+Min: 5783
+Avg: 5795.31
+Var: 6.99814
+Time: 251.563
+
+Experiment: tai100_10_1.txt 1 2 1 1 1
+Max: 5814
+Min: 5781
+Avg: 5795.86
+Var: 7.38108
+Time: 251.562
+
+Experiment: tai100_10_1.txt 1 2 1 1 0
+Max: 5896
+Min: 5814
+Avg: 5852.88
+Var: 17.6592
+Time: 251.563
+
+Experiment: tai100_10_1.txt 1 2 1 1 1
+Max: 5813
+Min: 5781
+Avg: 5794.07
+Var: 7.17671
+Time: 251.563
+
+Experiment: tai100_10_1.txt 1 2 1 1 2
+Max: 5956
+Min: 5814
+Avg: 5878.86
+Var: 28.3849
+Time: 251.562
+
+Experiment: tai100_20_1.txt 0 2 1 1 1
+Max: 6480
+Min: 6401
+Avg: 6441.31
+Var: 14.2805
+Time: 218.749
+
+Experiment: tai100_20_1.txt 1 2 1 1 1
+Max: 6472
+Min: 6390
+Avg: 6441.54
+Var: 15.7165
+Time: 251.563
+
+Experiment: tai100_20_1.txt 1 0 1 1 1
+Max: 6475
+Min: 6409
+Avg: 6441.79
+Var: 14.2999
+Time: 251.563
+
+Experiment: tai100_20_1.txt 1 1 1 1 1
+Max: 6477
+Min: 6407
+Avg: 6443.66
+Var: 16.2242
+Time: 251.562
+
+Experiment: tai100_20_1.txt 1 2 1 1 1
+Max: 6484
+Min: 6410
+Avg: 6443.47
+Var: 12.8922
+Time: 251.562
+
+Experiment: tai100_20_1.txt 1 3 1 1 1
+Max: 6472
+Min: 6400
+Avg: 6441.74
+Var: 14.1553
+Time: 251.563
+
+Experiment: tai100_20_1.txt 1 2 0 1 1
+Max: 6478
+Min: 6407
+Avg: 6442.19
+Var: 14.6695
+Time: 251.563
+
+Experiment: tai100_20_1.txt 1 2 1 1 1
+Max: 6471
+Min: 6393
+Avg: 6443.66
+Var: 14.4168
+Time: 251.563
+
+Experiment: tai100_20_1.txt 1 2 2 1 1
+Max: 6477
+Min: 6395
+Avg: 6439.37
+Var: 15.1424
+Time: 251.562
+
+Experiment: tai100_20_1.txt 1 2 1 0 1
+Max: 6477
+Min: 6400
+Avg: 6443.22
+Var: 15.5233
+Time: 251.562
+
+Experiment: tai100_20_1.txt 1 2 1 1 1
+Max: 6469
+Min: 6397
+Avg: 6440.6
+Var: 14.7248
+Time: 251.563
+
+Experiment: tai100_20_1.txt 1 2 1 1 0
+Max: 6641
+Min: 6496
+Avg: 6564.7
+Var: 29.1649
+Time: 251.562
+
+Experiment: tai100_20_1.txt 1 2 1 1 1
+Max: 6468
+Min: 6392
+Avg: 6440.75
+Var: 13.6897
+Time: 251.563
+
+Experiment: tai100_20_1.txt 1 2 1 1 2
+Max: 6627
+Min: 6510
+Avg: 6574.77
+Var: 25.2748
+Time: 251.578

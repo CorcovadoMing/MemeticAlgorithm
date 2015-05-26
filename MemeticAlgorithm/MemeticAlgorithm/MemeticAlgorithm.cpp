@@ -15,7 +15,7 @@ MemeticAlgorithm::MemeticAlgorithm(const int population_size, const double mutat
     {
         std::cout << "[Error] jobs = 0, machines = 0" << std::endl;
     }
-	population_size_ = jobs_;
+	population_size_ = 100;
 
     population_ = Population(population_size_ * 2, Chromosome(jobs_, 0));
 
